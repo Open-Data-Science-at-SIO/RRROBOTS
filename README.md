@@ -32,7 +32,9 @@ Students should also create a GitHub account (https://github.com/).
 
 ## List of Papers
 
-*TO BE DETERMINED*
+*NOT FINAL -- WORK IN PROGRESS*
+
+Eyal Bairey, Eric D. Kelsic, Roy Kishony. "High-order species interactions shape ecosystem diversity" Nature Communications 7: 12285 (2016). http://www.nature.com/articles/ncomms12285
 
 ## Schedule
 
