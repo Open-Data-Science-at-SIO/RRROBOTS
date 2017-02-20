@@ -2,13 +2,13 @@
 
 ## Course Objectives
 
-The goal of this course is to familiarize students with the process of applying statistical analysis as part of the scientific research process. Specifically, at the completion of the course, students will have first-hand experience of the entire workflow, from processing raw datasets to generating figures and discussion suitable for publication.
+The goal of this course is to familiarize students with the process of applying statistical data analysis as part of the scientific research process. At the completion of the course, students will have first-hand experience for the entire data analysis workflow, from processing raw datasets to generating figures and interpreting them in a scientific context suitable for publication.
 
-Students will work in small groups to replicate the analysis of a recent publication, and then develop their own scientific questions to be applied to the same data. Students will gain experience and training in the usage of technology for effective collaboration, open science, and reproducible research, including skills such as: data management, version control, and literate programming.
+Students will work in small groups to replicate the analysis of a (recent) publication. Time permitting, they will then develop their own scientific questions to be applied to the same data. Students will gain experience and training in the usage of technology for effective collaboration, open science, and reproducible research, including skills such as: data management, version control, and literate programming.
 
 Space is limited to 12* students.
 
-* = not finalized
+\* = not finalized
 
 ## Code of Conduct
 
@@ -35,6 +35,13 @@ Students should also create a GitHub account (https://github.com/).
 *NOT FINAL -- WORK IN PROGRESS*
 
 Eyal Bairey, Eric D. Kelsic, Roy Kishony. "High-order species interactions shape ecosystem diversity" Nature Communications 7: 12285 (2016). http://www.nature.com/articles/ncomms12285
+
+Eva Delmas, Ulrich Brose, Dominque Gravel, Daniel B. Stouffer, Timothée Poisot. "Simulations of biomass dynamics in community food webs" Methods in Ecology and Evolution (2017). http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12713/full
+
+Martin Lindegren, David M. Checkley Jr, Mark D. Ohman, J. Anthony Koslow, Ralf Goericke. "Resilience and stability of a pelagic marine ecosystem" Proceedings of the Royal Society B 283: 20151931 (2016). http://rspb.royalsocietypublishing.org/content/283/1822/20151931
+
+Vasilis Dakos, Marten Scheffer, Egbert H. van Nes, Victor Brovkin, Vladimir Petoukhov, and Hermann Held. "Slowing down as an early warning signal for abrupt climate change" PNAS 105: 14308–14312 (2008).
+http://www.pnas.org/content/105/38/14308.abstract
 
 ## Schedule
 
