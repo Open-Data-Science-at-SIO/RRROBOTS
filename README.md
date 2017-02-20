@@ -22,9 +22,9 @@ This course is aimed at students in the MB and BO programs who are thinking abou
 
 ### Pre-requisites
 
-Students who plan to attend should install R (https://cran.r-project.org/), RStudio (https://www.rstudio.com/products/rstudio/download/), and Git (https://git-scm.com/). While RStudio is not strictly necessary for this course, it will ensure a standard user interface for students to follow along.
+Students who plan to attend should install Git (https://git-scm.com/) and create a Github account (https://github.com/).
 
-Students should also create a GitHub account (https://github.com/).
+Students are encouraged to install and use R (https://cran.r-project.org/), RStudio (https://www.rstudio.com/products/rstudio/download/) to ensure a standard user interface. While students may use Python and Jupyter notebooks if desired, I am not able to assist with set-up and troubleshooting of either.
 
 ## Logistics
 
