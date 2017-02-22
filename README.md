@@ -46,3 +46,11 @@ http://www.pnas.org/content/105/38/14308.abstract
 ## Schedule
 
 *TO BE DETERMINED*
+
+## Acknowledgments
+
+This course is partly inspired by previous examples here:
+* https://github.com/opetchey/RREEBES
+* https://github.com/annakrystalli/OpenConBerlin_ReproHack
+
+And additionally is an Open Project sponsored by [Mozilla Science](https://science.mozilla.org/)
