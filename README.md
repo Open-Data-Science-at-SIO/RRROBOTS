@@ -6,7 +6,7 @@ The goal of this course is to familiarize students with the process of applying 
 
 Students will work in small groups to replicate the analysis of a (recent) publication. Time permitting, they will then develop their own scientific questions to be applied to the same data. Students will gain experience and training in the usage of technology for effective collaboration, open science, and reproducible research, including skills such as: data management, version control, and literate programming.
 
-Space is limited to 12* students.
+Space is limited to 10* students.
 
 \* = not finalized
 
@@ -28,7 +28,10 @@ Students are encouraged to install and use R (https://cran.r-project.org/), RStu
 
 ## Logistics
 
-*TO BE DETERMINED*
+Meetings will take place every Tuesday, from 3pm to 5pm in Vaughan Hall 328.
+The first session will be April 4, 2017 with the last one occurring on June 6, 2017.
+
+In addition, lab/office hours will be offered every Friday (April 7 to June 2), from 3pm to 5pm in Vaughan Hall 328. The goal of these sessions is to provide a formal time for producing the data analysis as well as to resolve any coding issues that may have arisen in the prior Tuesday's meeting.
 
 ## List of Papers
 
