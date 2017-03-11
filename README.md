@@ -1,5 +1,7 @@
 # Reproducible Research in R for Ocean Biosciences: Open-science Training Seminar
 
+<!--- Hidden comment --->
+
 ## Course Objectives
 
 The goal of this course is to familiarize students with the process of applying statistical data analysis as part of the scientific research process. At the completion of the course, students will have first-hand experience for the entire data analysis workflow, from processing raw datasets to generating figures and interpreting them in a scientific context suitable for publication.
