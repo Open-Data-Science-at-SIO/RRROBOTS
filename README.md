@@ -6,9 +6,7 @@ The goal of this course is to familiarize students with the process of applying 
 
 Students will work in small groups to replicate the analysis of a (recent) publication. Time permitting, they will then develop their own scientific questions to be applied to the same data. Students will gain experience and training in the usage of technology for effective collaboration, open science, and reproducible research, including skills such as: data management, version control, and literate programming.
 
-Space is limited to 10* students.
-
-\* = not finalized
+See [Roadmap](https://github.com/Open-Data-Science-at-SIO/RRROBOTS/issues/2)
 
 ## Code of Conduct
 
@@ -19,6 +17,8 @@ Note that this applies both to the physical space for classes, as well as online
 ## Target Audience
 
 This course is aimed at students in the MB and BO programs who are thinking about or currently engaged in analyzing data for their own dissertation (i.e. ~3rd years and above), and who have at taken at least 1 programming course and 1 statistics course. Students who are interested in the course, but unsure about their background in statistics or programming should contact the instructor before registering.
+
+Space is limited to 10 students.
 
 ### Pre-requisites
 
@@ -33,22 +33,17 @@ The first session will be April 4, 2017 with the last one occurring on June 6, 2
 
 In addition, lab/office hours will be offered every Friday (April 7 to June 2), from 3pm to 5pm in Vaughan Hall 328. The goal of these sessions is to provide a formal time for producing the data analysis as well as to resolve any coding issues that may have arisen in the prior Tuesday's meeting.
 
-## List of Papers
-
-*NOT FINAL -- WORK IN PROGRESS*
-
-Eyal Bairey, Eric D. Kelsic, Roy Kishony. "High-order species interactions shape ecosystem diversity" Nature Communications 7: 12285 (2016). http://www.nature.com/articles/ncomms12285
-
-Eva Delmas, Ulrich Brose, Dominque Gravel, Daniel B. Stouffer, Timothée Poisot. "Simulations of biomass dynamics in community food webs" Methods in Ecology and Evolution (2017). http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12713/full
-
-Martin Lindegren, David M. Checkley Jr, Mark D. Ohman, J. Anthony Koslow, Ralf Goericke. "Resilience and stability of a pelagic marine ecosystem" Proceedings of the Royal Society B 283: 20151931 (2016). http://rspb.royalsocietypublishing.org/content/283/1822/20151931
-
-Vasilis Dakos, Marten Scheffer, Egbert H. van Nes, Victor Brovkin, Vladimir Petoukhov, and Hermann Held. "Slowing down as an early warning signal for abrupt climate change" PNAS 105: 14308–14312 (2008).
-http://www.pnas.org/content/105/38/14308.abstract
-
-## Schedule
+### Schedule
 
 *TO BE DETERMINED*
+
+## Contributors / Course Participants
+
+See [here](https://github.com/Open-Data-Science-at-SIO/RRROBOTS/blob/master/CONTRIBUTING.md).
+
+## List of Papers
+
+See [here](https://github.com/Open-Data-Science-at-SIO/RRROBOTS/blob/master/PAPERS.md).
 
 ## Acknowledgments
 
