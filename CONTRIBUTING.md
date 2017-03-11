@@ -1,3 +1,7 @@
+# Guidelines for Contributing
+*TODO*
+
+# List of Participants for the Course
 | Name                  | Affiliation                   |
 |-----------------------|-------------------------------|
 | Hao Ye                | SIO Postdoc                   |
