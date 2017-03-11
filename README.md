@@ -5,6 +5,7 @@ Welcome!
 ## Course Objectives
 
 There are 2 main goals of this course:
+
 1. Learn and implement practices in research computing including: data management, version control, code documentation, and replicability. (see Wilson et al. ["Good enough practices in scientific computing"](https://arxiv.org/abs/1609.00037))
 2. Reproduce figures and results from published work: test-drive the skills in objective 1. while going in-depth into the methodology of research that piques your interest.
 
