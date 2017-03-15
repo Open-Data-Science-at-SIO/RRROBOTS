@@ -9,4 +9,5 @@
 | Eva Sánchez           | SIO Grad Student (MB, 7th yr) |
 | Pierre Churukian      | SIO Grad Student (MAS)        |
 | Bethany Kolody        | SIO Grad Student (MB, 3rd yr) |
+| Lynn Waterhouse       | SIO Grad Student (BO, 5th yr) |
 | Andrew Johnson        | SIO Postdoc                   |
