@@ -10,4 +10,6 @@
 | Pierre Churukian      | SIO Grad Student (MS)         |
 | Bethany Kolody        | SIO Grad Student (MB, 3rd yr) |
 | Lynn Waterhouse       | SIO Grad Student (BO, 5th yr) |
+| Beverly French        | SIO Grad Student (MB, 3rd yr) |
+| Eiren Jacobson        | SIO Grad Student (BO, 5th yr) |
 | Andrew Johnson        | SIO Postdoc                   |
