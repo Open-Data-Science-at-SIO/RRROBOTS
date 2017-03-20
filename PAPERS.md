@@ -14,3 +14,7 @@ Martin Lindegren, David M. Checkley Jr, Mark D. Ohman, J. Anthony Koslow, Ralf G
 
 Vasilis Dakos, Marten Scheffer, Egbert H. van Nes, Victor Brovkin, Vladimir Petoukhov, and Hermann Held. "Slowing down as an early warning signal for abrupt climate change" PNAS 105: 14308–14312 (2008).
 http://www.pnas.org/content/105/38/14308.abstract
+
+A. Andrew M. MacDonald, Gustavo Q. Romero, and Diane S. Srivastava. "Predator phylogenetic diversity decreases predation rate via antagonistic interactions" bioRxiv.
+http://biorxiv.org/content/early/2016/11/23/089144
+https://zenodo.org/record/168054
