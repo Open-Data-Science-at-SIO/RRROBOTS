@@ -19,7 +19,16 @@ If you are a course participant:
 
 2. Create a branch to keep track of your commits separately. Once you've made sufficient progress, you should issue a pull request to merge with master. You can do this in order to report on progress or ask for help on issues. For more info, please check out this [guide](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging).
 
+### Getting Started?
+
+Not sure where to begin?
+
+We can always use help checking our work for typos or minor errors.
+
+You may also want to suggest a paper to reproduce: https://github.com/Open-Data-Science-at-SIO/RRROBOTS/blob/master/PAPERS.md
+
 ## List of Participants for the Course
+
 | Name                  | Affiliation                   |
 |-----------------------|-------------------------------|
 | Hao Ye                | SIO Postdoc                   |
