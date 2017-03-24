@@ -1,8 +1,8 @@
-## Assigned Papers
+## Assigned Papers for Reproduction
 
 *who's working on reproducing what papers*
 
-## Tentative List of Papers
+## Tentative List of Papers for Reproduction
 
 *NOT FINAL -- WORK IN PROGRESS*
 
@@ -18,3 +18,10 @@ http://www.pnas.org/content/105/38/14308.abstract
 A. Andrew M. MacDonald, Gustavo Q. Romero, and Diane S. Srivastava. "Predator phylogenetic diversity decreases predation rate via antagonistic interactions" bioRxiv.
 http://biorxiv.org/content/early/2016/11/23/089144
 https://zenodo.org/record/168054
+
+## Readings
+Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. "Good Enough Practices in Scientific Computing" arXiv. https://arxiv.org/abs/1609.00037
+
+Malika Ihle, Isabel S Winney, Anna Krystalli, Michael Croucherd. "Striving for transparent and credible research: practical guidelines for behavioral ecologists" Behavioral Ecology (2017). https://academic.oup.com/beheco/article/3069145/Striving-for-transparent-and-credible-research
+
+
