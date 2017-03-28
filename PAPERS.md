@@ -19,10 +19,11 @@ A. Andrew M. MacDonald, Gustavo Q. Romero, and Diane S. Srivastava. "Predator ph
 http://biorxiv.org/content/early/2016/11/23/089144
 https://zenodo.org/record/168054
 
+Shinichi Sunagawa et al. "Structure and function of the global ocean microbiome" Science 348: 1261359 (2015). http://science.sciencemag.org/content/348/6237/1261359
+
 ## Readings
 Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. "Good Enough Practices in Scientific Computing" arXiv. https://arxiv.org/abs/1609.00037
 
 Malika Ihle, Isabel S Winney, Anna Krystalli, Michael Croucherd. "Striving for transparent and credible research: practical guidelines for behavioral ecologists" Behavioral Ecology (2017). https://academic.oup.com/beheco/article/3069145/Striving-for-transparent-and-credible-research
 
 Justin Kitzes, Daniel Turek, Fatma Deniz (Eds.). "The Practice of Reproducible Research" University of California Press (2017). https://www.gitbook.com/book/bids/the-practice-of-reproducible-research/details
-

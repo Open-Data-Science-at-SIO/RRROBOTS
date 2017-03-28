@@ -32,11 +32,11 @@ You may also want to suggest a paper to reproduce: https://github.com/Open-Data-
 | Name                  | Affiliation                   |
 |-----------------------|-------------------------------|
 | Hao Ye                | SIO Postdoc                   |
-| Brian Stock           | SIO Grad Student (MB, 4th yr) |
-| Eva Sánchez           | SIO Grad Student (MB, 7th yr) |
+| Brian Stock           | SIO Grad Student (MB)         |
+| Eva Sánchez           | SIO Grad Student (MB)         |
 | Pierre Churukian      | SIO Grad Student (MS)         |
-| Bethany Kolody        | SIO Grad Student (MB, 3rd yr) |
-| Lynn Waterhouse       | SIO Grad Student (BO, 5th yr) |
-| Beverly French        | SIO Grad Student (MB, 3rd yr) |
-| Eiren Jacobson        | SIO Grad Student (BO, 5th yr) |
-| Andrew Johnson        | SIO Postdoc                   |
+| Bethany Kolody        | SIO Grad Student (MB)         |
+| Lynn Waterhouse       | SIO Grad Student (BO)         |
+| Beverly French        | SIO Grad Student (MB)         |
+| Eiren Jacobson        | SIO Grad Student (BO)         |
+| Julia Busch           | SIO Grad Student (MB)         |

@@ -1,6 +1,6 @@
-# Reproducible Research in R for Ocean Biosciences: Open-science Training Seminar
+# Reproducible Research in R for Ocean Biosciences: Open-science Training Seminar (RRROBOTS)
 
-Welcome!
+Welcome! (Yes, we have an awesome acronym!)
 
 ## Course Objectives
 
@@ -38,11 +38,9 @@ The first session will be April 4, 2017 with the last one on June 6, 2017.
 
 In addition, lab/office hours will be offered every Friday (April 7 to June 2), from 3pm to 5pm in Vaughan Hall 328. The goal of these sessions is to provide time for catching up on work for the week and to resolve any coding issues.
 
-### Schedule
+## Schedule
 
-*TODO*
-April 4
-
+See [here](https://github.com/Open-Data-Science-at-SIO/RRROBOTS/blob/master/schedule.md).
 
 ## Contributors / Course Participants
 
