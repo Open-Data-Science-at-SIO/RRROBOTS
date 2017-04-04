@@ -1,0 +1,214 @@
+---
+title: "Version Control (with Git and Github)"
+subtitle: "RRROBOTS Week 1"
+author: "Hao Ye"
+date: "2017, April 03"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# What is Git?
+
+**Git** is software for version control...
+--
+
+with a ~~bad~~ terrible user interface.
+
+--
+
+### What is it supposed to do?
+
+* track changes to your project
+* facilitate experimentation
+* enable collaborations
+
+--
+
+*It actually is pretty good at these things, which is why people put up with it.*
+
+---
+
+# Lesson Objectives
+
+### Tasks
+* track changes to your project
+* time travel
+* facilitate experimentation
+* enable collaborations
+* project management
+
+### Definitions
+* **Git** is software that lives on your computer.
+* **GitHub** is a website that acts as a remote backup
+  - like Dropbox or Google Drive
+
+---
+
+# Recording History
+
+### Projects reside in a folder.
+
+* A **repository** (or **repo**) contains the history of a project.
+
+--
+
+### You use Git to take snapshots of all the files in a folder.
+* A **commit** corresponds to a single snapshot.
+
+--
+
+### Each commit records **metadata**
+* Who & when
+* What (commit message)
+* Where the commit came from (its history)
+* Labels (branch names)
+
+---
+class: center, middle
+
+# DEMO
+
+---
+
+# Time Travel
+
+### Git stores a log of past commits
+* This is why commit messages are important
+
+--
+
+### Each commit has a unique id
+* This enables reversion to previous project versions
+
+--
+
+### We can load previous commits
+* In Git, this is the **checkout** command
+
+---
+class: center, middle
+
+# DEMO
+
+---
+
+# Experimentation
+
+### Commits are immutable
+* We can't lose work *if it is committed*
+
+--
+
+### Sometimes we need to experiment without disrupting history
+* Git enables this using **branches**
+
+--
+
+### Branches
+* A branch is actually just a label attached to a commit that automatically progresses.
+* The default branch name is **master**.
+
+---
+
+# Collaboration
+
+### Workflow
+
+* It is common for master to hold a clean copy of the project (i.e. the code runs and everything works).
+* Work is done by individuals or groups in separate branches.
+* Changes that are ready to be deployed are then **merged** into master.
+
+### Merge Conflicts
+
+* If changes have occurred to the same location of the same file, Git will inform you of a conflict.
+* Fix this by resolving changes manually, and make a new commit.
+
+---
+class: center, middle
+
+# DEMO
+
+---
+
+# Remote Backups
+
+### Copying repos
+* Git is meant as a *distributed* model: each copy of the repo has the full history.
+* Other computers with the same repo are **remotes**
+* Copying Git repos is known as **cloning**
+
+### Synchronizing
+* Sending commits to other computers is **pushing**
+* Grabbing commits from other computers is **pulling**
+
+---
+class: center, middle
+
+# DEMO
+
+---
+
+# Collaborations
+
+### Git hosting
+* GitHub is a popular service for hosting Git repos
+* public repos are free, private ones available for $$ or edu accounts
+
+### GitHub features
+* basic text editing on the website
+* track issues
+* send pull requests (e.g. ask someone to pull/merge changes into master)
+* showcase your projects
+* write documentation
+
+---
+class: center, middle
+
+# DEMO
+
+---
+
+# TODO
+
+### Make sure Git and GitHub work on your computer
+* test Git
+* test syncing with GitHub
+* send me your GitHub account info to be added to the course repo
+
+### Decide on groups and papers
+* find a partner (optional), preferably mix of programming/stats skill
+* choose a paper to reproduce (either from list or de novo)
+
+---
+
+# References
+
+* [Happy Git and GitHub for the useR](http://happygitwithr.com/)
+* [Git for humans](https://speakerdeck.com/alicebartlett/git-for-humans)
+* [Git Tutorials (Atlassian)](https://www.atlassian.com/git/tutorials)
+* [GitHub Tutorials](https://guides.github.com/)
+
+### Panic Button
+* [Oh shit, git!](http://ohshitgit.com/)
+
+---
+
+class: center, middle
+
+# Acknowledgments
+
+Class supported by:
+
+<img width=50% src = "mozilla_science_logo.png">
+<img width=50% src = "open_data_science_logo.png">
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).

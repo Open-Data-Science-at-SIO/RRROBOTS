@@ -1,0 +1,95 @@
+---
+title: "Course Logistics"
+subtitle: "RRROBOTS"
+author: "Hao Ye"
+date: "2017, April 03"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Code of Conduct
+
+Create an environment where everyone can participate and learn.
+
+* be respectful in interactions (assume good faith)
+* ask questions to clarify and help each other learn
+* value everyone's input and unique perspective
+* don't harass!
+
+
+* reporting mechanisms
+  * Dr. Peter Franks, Ombudsperson
+  * Dr. Lynne Talley, Ombudsperson
+  * Keiara Auzenne, SIO Diversity Initiatives Coordinator
+
+---
+
+# Course Objectives
+
+1. Learn and implement practices in research computing including:
+  * data and project management
+  * version control
+  * code documentation
+  * replicability.
+
+2. Reproduce figures and results from published work:
+  * hands-on experience with skills in objective 1
+  * recreate and discuss methodology of research relevant to you
+
+---
+
+# Basic Info
+
+### Location: Vaughan Hall 328
+
+### Tuesdays, 3pm - 5pm: 
+* updates on project status
+* main lesson material
+
+### Fridays, 3pm - 5pm:
+* lab / office hours
+* debug session
+* Q&A from Tuesday's material
+
+---
+
+# Basic Schedule
+
+* Week 1 (April 4)
+  - version control using Git and Github
+  - collaborative workflows
+* Week 2 (April 11)
+  - data and project management
+  - data processing
+* Week 3 (April 18)
+  - literate programming
+  - documentation
+* Week 4 (April 25)
+  - data / code archiving
+  - preprints
+  - licenses
+* Week 5 (May 5)
+  - open science framework (tentative)
+* Weeks 6-10 (May 12 - June 6)
+  - projects
+---
+
+class: center, middle
+
+# Acknowledgments
+
+Class supported by:
+
+<img width=50% src = "mozilla_science_logo.png">
+<img width=50% src = "open_data_science_logo.png">
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).

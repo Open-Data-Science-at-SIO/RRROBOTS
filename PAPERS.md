@@ -21,6 +21,12 @@ https://zenodo.org/record/168054
 
 Shinichi Sunagawa et al. "Structure and function of the global ocean microbiome" Science 348: 1261359 (2015). http://science.sciencemag.org/content/348/6237/1261359
 
+Jeff S. Bowman and Hugh W. Ducklow. "Microbial Communities Can Be Described by Metabolic Structure: A General Framework and Application to a Seasonally Variable, Depth-Stratified Microbial Community from the Coastal West Antarctic Peninsula" PLOS One: 0135868 (2015). http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0135868
+
+Ryan D. Batt, Stephen R. Carpenter, and Anthony R. Ives. "Extreme events in lake ecosystem time series" L&amp;O Letters (2017). http://onlinelibrary.wiley.com/doi/10.1002/lol2.10037/abstract
+
+Sean C. Anderson, Trevor A. Branch, Andrew B. Cooper, and Nicholas K. Dulvy. "Black-swan events in animal populations" PNAS 114: 3252-3257 (2017). http://www.pnas.org/content/114/12/3252.abstract
+
 ## Readings
 Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. "Good Enough Practices in Scientific Computing" arXiv. https://arxiv.org/abs/1609.00037
 
