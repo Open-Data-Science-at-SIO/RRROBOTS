@@ -2,6 +2,8 @@
 
 Welcome! (Yes, we have an awesome acronym!)
 
+local change
+
 ## Course Objectives
 
 There are 2 main goals of this course:
