@@ -2,6 +2,8 @@
 
 Welcome! (Yes, we have an awesome acronym!)
 
+First class!
+
 ## Course Objectives
 
 There are 2 main goals of this course:
