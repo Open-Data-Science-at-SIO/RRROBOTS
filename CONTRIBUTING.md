@@ -39,4 +39,5 @@ You may also want to suggest a paper to reproduce: https://github.com/Open-Data-
 | Lynn Waterhouse       | SIO Grad Student (BO)         |
 | Beverly French        | SIO Grad Student (MB)         |
 | Eiren Jacobson        | SIO Grad Student (BO)         |
+| Natalia Erazo         | SIO Research Technician       |
 | Julia Busch           | SIO Grad Student (MB)         |
