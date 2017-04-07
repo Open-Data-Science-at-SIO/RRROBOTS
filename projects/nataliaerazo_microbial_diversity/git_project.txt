@@ -1,0 +1,6 @@
+Readme 
+
+I will be reproducing a paper that developed a a new pipeline to determine microbial community structure by examining metabolic pathways. I will look at different databases: TARA, Human microbiome, Earth microbiome . I will replicate the method with different datasets and I will also compared it to other metrics for community structure: alpha and beta diversity. 
+Bowman, Jeff S., and Hugh W. Ducklow. "Microbial Communities Can Be Described by Metabolic Structure: A General Framework and Application to a Seasonally Variable, Depth-Stratified Microbial Community from the Coastal West Antarctic Peninsula." PloS one 10.8 (2015): e0135868.
+
+Natalia ERazo
