@@ -1,0 +1,148 @@
+---
+title: "Project/File/Data Management"
+subtitle: "RRROBOTS Week 2"
+author: "Hao Ye"
+date: "2017, April 04"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Lesson Objectives
+
+### Week 1 Catchup
+### Reproducibility
+### Project/File Organization
+### Data Cleaning
+
+---
+class: center, middle, inverse
+
+# Week 1 Catchup
+
+---
+
+# GitHub
+
+### What is it?
+* An online service to store your Repos.
+
+  - like a shared Dropbox folder that you manually sync to
+  
+--
+
+* A project management tool.
+
+  - Create / discuss / assign / resolve **issues**
+  
+  - Manage repos / releases / etc.
+
+--
+
+* A website hosting platform
+
+  - GitHub pages (see https://pages.github.com/ for more details)
+
+---
+
+# GitHub Demo
+
+### Setup access on GitHub
+
+* What is your GitHub account name?
+
+### Check git config
+
+* http://happygitwithr.com/hello-git.html
+
+### Setup ssh key
+
+* http://happygitwithr.com/ssh-keys.html
+
+---
+
+# GitHub workflow
+
+### Update the course repo
+
+* make a new branch
+* make changes
+* commit changes
+* push upstream
+* send pull request
+
+---
+class: center, middle, inverse
+
+# Reproducibility
+
+---
+class: center, middle
+
+# *Your most frequent collaborator is your former self... and that person doesn't respond to emails*
+
+---
+class: center
+
+# What does reproducibility mean?
+
+--
+<img src = "paper_flowchart.pdf">
+--
+
+### Every step of the analysis can be reproduced independently
+
+---
+
+# How do we make our work reproducible?
+
+* Avoid manual data manipulation
+  - use scripts to process raw data
+  
+* Track results and how they were produced
+  - version control (e.g. Git)
+  - intermediate results
+  - summary datasets and code for figures
+  - random number seeds (e.g. for some model-fitting algorithms)
+  
+* Keep documentation close to the underlying code
+  - adopt "good"" coding practices
+
+* Make code and data available
+  - GitHub, data/code archiving services
+
+---
+class: center, middle, inverse
+
+# Project/File Organization
+
+---
+
+# 
+
+
+---
+class: center, middle, inverse
+
+# Data Cleaning
+
+---
+
+class: center, middle
+
+# Acknowledgments
+
+Class supported by:
+
+<img width=50% src = "mozilla_science_logo.png">
+<img width=50% src = "open_data_science_logo.png">
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
