@@ -17,15 +17,12 @@ class: center, middle, inverse, title-slide
 
 ---
 
-
-
-
 # Lesson Objectives
 
 ### Week 1 Catchup
 ### Reproducibility
 ### Project/File Organization
-### Data Cleaning
+### Data Processing
 
 ---
 class: center, middle, inverse
@@ -40,13 +37,13 @@ class: center, middle, inverse
 * An online service to store your Repos.
 
   - like a shared Dropbox folder that you manually sync to
-  
+
 --
 
 * A project management tool.
 
   - Create / discuss / assign / resolve **issues**
-  
+
   - Manage repos / releases / etc.
 
 --
@@ -99,7 +96,7 @@ class: center
 # What does reproducibility mean?
 
 --
-&lt;img src = "paper_flowchart.pdf"&gt;
+&lt;img src = "paper_flowchart.png"&gt;
 --
 
 ### Every step of the analysis can be reproduced independently
@@ -110,13 +107,13 @@ class: center
 
 * Avoid manual data manipulation
   - use scripts to process raw data
-  
+
 * Track results and how they were produced
   - version control (e.g. Git)
   - intermediate results
   - summary datasets and code for figures
   - random number seeds (e.g. for some model-fitting algorithms)
-  
+
 * Keep documentation close to the underlying code
   - adopt "good"" coding practices
 
@@ -130,13 +127,120 @@ class: center, middle, inverse
 
 ---
 
-# 
+# Philosophy
 
+### Make your projects navigable
+* find what you need quickly
+
+### Develop good (but flexible) habits
+* find out what works for you
+* don't be afraid to experiment (version control is your friend!)
+
+### Consistency
+* for yourself and for others
+
+---
+
+# General Guidelines
+
+* Include a README for all projects
+  - "is this the project I'm looking for?"
+
+* Include a LICENSE for all projects
+  - "how can I use this project?"
+
+* Organize sub-folders
+  - `data`, `results`, `figures`
+  - `doc` (reference material and documentation)
+  - `bin` (compiled executables)
+  - `paper` (manuscript files)
+
+* Pick informative names
+  - use alphabetical file sorting to order and group files
+
+     (e.g. "yyyy-mm-dd" data formats)
 
 ---
 class: center, middle, inverse
 
-# Data Cleaning
+# Data Processing
+
+---
+class: center, middle
+
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;I believe what I am accumulating for my data processing pipeline is known as &amp;quot;technical debt&amp;quot; &amp;amp; I need a week to get my sh!it together.&lt;/p&gt;&amp;mdash; Katie (@ResourcefulSqrl) &lt;a href="https://twitter.com/ResourcefulSqrl/status/851847867845226500"&gt;April 11, 2017&lt;/a&gt;&lt;/blockquote&gt;
+
+---
+class: center, middle
+
+&lt;blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;&amp;quot;What is technical debt?&amp;quot; Technical debt is hard to explain, but a picture is worth a thousand words. &lt;a href="https://twitter.com/hashtag/programming?src=hash"&gt;#programming&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/softwaredevelopment?src=hash"&gt;#softwaredevelopment&lt;/a&gt; &lt;a href="https://t.co/AG2L3VDuKZ"&gt;pic.twitter.com/AG2L3VDuKZ&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jedd Ahyoung (@Jedd_Ahyoung) &lt;a href="https://twitter.com/Jedd_Ahyoung/status/826551935822077952"&gt;January 31, 2017&lt;/a&gt;&lt;/blockquote&gt;
+
+---
+class: center, middle
+
+&lt;img src="technical_debt.jpg" width="40%"&gt;
+
+---
+# Philosophy
+
+### Don't modify the raw data!
+* use scripts to correct errors (programmatically or manually)
+
+### Avoid duplication of data
+* information can become desynchronized
+* use data structures / standards for your field
+
+  (or whatever works best for your projects)
+
+### Write functions for each pipeline step
+
+---
+
+# Why write functions?
+
+* Documentation
+  - easier to translate into "methods" section
+
+* Debugging &amp; Error-checking
+  - verify using known working inputs and outputs
+  - simpler to **refactor**
+
+* Reproducibility
+  - explicit control over inputs and outputs
+
+* Reusability
+  - in R, functions can be collected in packages and shared
+
+---
+
+# Data Formats
+
+### No one-size fits all solution!
+
+### Tidy Data (one generally-applicable standard)
+
+* a dataset is arranged by rows and columns
+* each **column** is a variable
+  - "A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units."
+* each **row** is an observation
+  - "An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes."
+
+* NOTE: Within a single dataset, **variables** and **observations** may change depending on analysis!
+
+---
+class: center, middle
+
+# DEMO
+
+---
+
+# References
+
+* Brian McGill. [Ten commandments for good data management](https://dynamicecology.wordpress.com/2016/08/22/ten-commandments-for-good-data-management/)
+* Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. ["Good Enough Practices in Scientific Computing"](https://arxiv.org/abs/1609.00037)
+* Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, Elvind Hovig. ["Ten Simple Rules for Reproducible Computational Research"](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285)
+* Hadley Wickham. [Tidy Data](https://www.jstatsoft.org/article/view/v059i10)
+* [Tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
 
 ---
 
@@ -177,5 +281,6 @@ MathJax.Hub.Config({
   document.getElementsByTagName('head')[0].appendChild(script);
 })();
 </script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </body>
 </html>
