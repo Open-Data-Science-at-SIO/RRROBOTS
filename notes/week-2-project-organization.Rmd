@@ -5,6 +5,8 @@ author: "Hao Ye"
 date: "2017, April 04"
 output:
   xaringan::moon_reader:
+    includes:
+      after_body: scripts.html
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -12,12 +14,9 @@ output:
       countIncrementalSlides: false
     
 ---
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
-
 # Lesson Objectives
 
 ### Week 1 Catchup
@@ -151,12 +150,20 @@ class: center, middle, inverse
   - "how can I use this project?"
 
 * Organize sub-folders
-  - `data`, `results`, `figures`
+  - `data`, `results`, `figures`, `src`
   - `doc` (reference material and documentation)
   - `bin` (compiled executables)
   - `paper` (manuscript files)
-  
-* Pick informative names
+
+---
+
+# More Guidelines
+
+* Document extensively!
+  - when/where/whom datasets came from
+  - what code is intended to do
+
+* Pick informative names for files
   - use alphabetical file sorting to order and group files
   
      (e.g. "yyyy-mm-dd" data formats)
