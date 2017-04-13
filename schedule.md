@@ -52,7 +52,8 @@ Friday:
 ### Week 5 (May 2, May 5)
 
 Tuesday:
-* Open Science Framework?
+* Sharing / discussion of progress
+* Unit testing?
 
 Friday:
 * Debug misc. issues
@@ -69,6 +70,9 @@ Friday:
 
 Tuesday:
 * Sharing / discussion of progress
+* Guest Lecturer (Reid Otsuji, UCSD Libraries)
+  - Open Science Framework
+  - TIER Protocol
 
 Friday:
 * Debug misc. issues
