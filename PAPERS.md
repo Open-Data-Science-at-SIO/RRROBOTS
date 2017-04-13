@@ -30,7 +30,7 @@ Sean C. Anderson, Trevor A. Branch, Andrew B. Cooper, and Nicholas K. Dulvy. "Bl
 ## Readings
 Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. "Good Enough Practices in Scientific Computing" arXiv. https://arxiv.org/abs/1609.00037
 
-Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, Elvind Hovig. "Ten Simple Rules for Reproducible Computational Research" PLOS Comp Bio 9: e1003285. http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
+Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, Elvind Hovig. "Ten Simple Rules for Reproducible Computational Research" PLOS Comp Bio 9: e1003285 (2013). http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
 
 Malika Ihle, Isabel S Winney, Anna Krystalli, Michael Croucherd. "Striving for transparent and credible research: practical guidelines for behavioral ecologists" Behavioral Ecology (2017). https://academic.oup.com/beheco/article/3069145/Striving-for-transparent-and-credible-research
 
