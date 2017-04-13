@@ -1,0 +1,13 @@
+DEMO project for RRROBOTS Course
+
+Author: Hao Ye
+
+Description: A simple plot of the atmospheric CO2 and global mean temperature data.
+
+Files:
+
+* `main.Rmd` is the main project file. It can be knitted in R to produce a report.
+
+* Data files are in the `data` folder. Please see the README there for info on where the datasets came from.
+
+* R script files are in the `src` folder.
