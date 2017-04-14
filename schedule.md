@@ -71,7 +71,7 @@ Friday:
 Tuesday:
 * Sharing / discussion of progress
 * Guest Lecturer (Reid Otsuji, UCSD Libraries)
-  - Open Science Framework
+  - Open Science Framework for Institutions (live demo)
   - TIER Protocol
 
 Friday:
