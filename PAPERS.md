@@ -27,6 +27,9 @@ Ryan D. Batt, Stephen R. Carpenter, and Anthony R. Ives. "Extreme events in lake
 
 Sean C. Anderson, Trevor A. Branch, Andrew B. Cooper, and Nicholas K. Dulvy. "Black-swan events in animal populations" PNAS 114: 3252-3257 (2017). http://www.pnas.org/content/114/12/3252.abstract
 
+Sunagawa, S. et al. Ocean plankton. Structure and function of the global ocean microbiome. Science 348, 1261359 (2015). http://science.sciencemag.org/content/348/6237/1261359
+
+
 ## Readings
 Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. "Good Enough Practices in Scientific Computing" arXiv. https://arxiv.org/abs/1609.00037
 
