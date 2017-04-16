@@ -28,6 +28,8 @@ Ryan D. Batt, Stephen R. Carpenter, and Anthony R. Ives. "Extreme events in lake
 Sean C. Anderson, Trevor A. Branch, Andrew B. Cooper, and Nicholas K. Dulvy. "Black-swan events in animal populations" PNAS 114: 3252-3257 (2017). http://www.pnas.org/content/114/12/3252.abstract
 
 ## Readings
+Morgan Taschuk, Greg Wilson. "Ten simple rules for making research software more robust" PLOS Comp Bio 13: e1005412 (2017). http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005412
+
 Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy K. Teal. "Good Enough Practices in Scientific Computing" arXiv. https://arxiv.org/abs/1609.00037
 
 Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, Elvind Hovig. "Ten Simple Rules for Reproducible Computational Research" PLOS Comp Bio 9: e1003285 (2013). http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
