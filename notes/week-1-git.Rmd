@@ -2,7 +2,7 @@
 title: "Version Control (with Git and Github)"
 subtitle: "RRROBOTS Week 1"
 author: "Hao Ye"
-date: "2017, April 03"
+date: "2017, April 04"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -196,6 +196,7 @@ class: center, middle
 * [Git for humans](https://speakerdeck.com/alicebartlett/git-for-humans)
 * [Git Tutorials (Atlassian)](https://www.atlassian.com/git/tutorials)
 * [GitHub Tutorials](https://guides.github.com/)
+* [Git Tutorial (Software Carpentry)](https://swcarpentry.github.io/git-novice/)
 
 ### Panic Button
 * [Oh shit, git!](http://ohshitgit.com/)

@@ -1,0 +1,45 @@
+---
+title: "My Project"
+author: "Hao Ye"
+date: "4/12/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Setup
+
+Load our packages and functions
+
+```{r}
+library(ggplot2)
+
+rm(list = ls()) # clear our workspace
+
+source(file.path("src", "data_processing.R"))
+```
+
+# Data Processing
+
+```{r}
+process_co2_temperature_data()
+```
+
+# Figures
+
+Simple time series plot of CO2 and temperature anomalies.
+
+```{r}
+co2_temp_data <- read.csv(file.path("data", "co2_temperature.csv"))
+ggplot(co2_temp_data, 
+       aes(x = decimal_date, y = co2_interpolated)) + 
+    geom_line() + 
+    theme_bw()
+ggplot(co2_temp_data, 
+       aes(x = decimal_date, y = temp_anomaly)) + 
+    geom_line() + 
+    theme_bw()
+```
+
