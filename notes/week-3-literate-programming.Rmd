@@ -1,0 +1,263 @@
+---
+title: "Literate Programming & Documentation"
+subtitle: "RRROBOTS Week 3"
+author: "Hao Ye"
+date: "2017, April 18"
+output:
+  xaringan::moon_reader:
+    includes:
+      after_body: scripts.html
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: false
+      countIncrementalSlides: false
+    
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+# Lesson Objectives
+
+### Project Status
+### Literate Programming
+### Documentation
+
+---
+class: center, middle, inverse
+
+# Project Status
+
+---
+
+# Project Check-in
+
+### What stage are you at?
+* Paper / group defined?
+
+### Develop a Roadmap
+* What are your objectives?
+* How do you know your project is complete?
+
+---
+
+# GitHub issues
+
+### Remember, GitHub originally intended as a tool for software development!
+
+--
+
+### Why?
+* plan out what you are going to do ("issue" == "bug" == "feature")
+* be specific about tasks
+* organization of work
+
+### Collaborations
+* threaded (opt-in) discussion
+* prevent duplication of effort and unnecessary emails
+
+---
+
+# Intro to Markdown
+
+### Why learn yet another syntax?
+* It allows you to format your docs:
+  - GitHub will automatically render `readme` files within folders.
+  - If it has a `.md` extension, Markdown formatting will be applied.
+* Many sites use Markdown formatting:
+  - StackOverflow Qs and Responses
+  - GitHub project interfaces
+* It has very little added complexity - the raw text is human-readable.
+* GitHub Integration: 
+  - keywords will automagically close issues:
+    https://help.github.com/articles/closing-issues-via-commit-messages/
+
+---
+
+# Basic Markdown
+
+```
+# Header level 1
+## Header level 2
+
+*italicized text*
+
+**bolded text**
+
+[link text](link URL)
+
+* Bullet Points
+  - indented bullets
+    1. numbered
+    2. list
+    3. items
+```
+---
+
+class: center, middle, inverse
+
+# Literate Programming
+
+---
+
+# What is it?
+
+1. Describe what you want to do in normal language (e.g. English)
+
+2. Write code to do your computations.
+
+  - Hide the messy bits that are not relevant for describing the analysis.
+  
+3. Generate the output.
+  
+4. Glue it all together:
+
+  - the story
+  - the code
+  - the results
+  
+--
+
+### Yeah, it's sort of like a scientific paper!
+
+---
+
+class: center, middle
+
+# What Can We Use It For?
+
+---
+
+# Use Cases
+
+### Package Vignettes and Tutorials
+* https://github.com/tidyverse/ggplot2
+* https://github.com/datacarpentry/R-ecology-lesson
+
+### Reports, Supplements, Papers
+* https://github.com/SimonGoring/GoringetalPollenRichness
+* http://www.collabra.org/article/10.1525/collabra.71/
+
+---
+
+# Advanced Use Cases
+
+* Slides
+  - Beamer Template (LaTeX)
+  - `xaringan` package (what this is created with)
+
+* Websites
+  - `blogdown` package
+
+* Books
+  - `bookdown` package
+  
+* Theses
+  - `thesisdown` package
+
+---
+
+# Why Use It?
+
+### No more copy-pasting of numerical results, tables, etc.
+
+### No more toggling back and forth between the text and the code.
+
+--
+
+### It keeps everything organized and consistent!
+
+---
+class: center, middle
+
+# Demo
+
+---
+
+# Real-Time Embedding of Code and Output
+
+```{r, message = FALSE, echo = FALSE}
+library(ggplot2)
+library(plotly)
+```
+
+```{r, fig.height = 4, fig.width = 7}
+ggplotly(ggplot(iris, aes(x = Petal.Length, y = Sepal.Width, color = Species)) + 
+             geom_point() + theme_bw())
+```
+
+---
+class: center, middle, inverse
+
+# Documentation
+
+---
+
+# Function Documentation
+
+### Goals
+* describe what the function does without having to read the code
+* clarify the inputs and outputs so that others can build on either end
+
+### Guidelines
+1. what it does;
+2. what all its inputs are (in order);
+3. what it requires of the inputs and the state of the system ("presumes")'
+4. what side-effects it may have (e.g., "plots histogram of residuals");
+5. what all its outputs are (in order)
+
+---
+
+# Project Documentation
+
+### Map the location of things in the Readme
+
+### Describe the general flow of analysis in scripts or markdown
+* Usually I have both
+  - a script for testing and running interactively
+  - a markdown report of the whole "pipeline" and results
+  
+### Use GitHub to track stuff!
+
+---
+
+# Package Documentation
+
+R uses packages to extend the language functionality.
+
+### Packages are easy to write
+* very little overhead if for personal use
+* RStudio will take care of lots of things for you
+* uploading to CRAN makes it available for others, requires more extensive documentation
+* can be code or data
+
+### Roxygen 
+* a package and plug-in for RStudio
+* generated `.rd` files, correctly formatted documentation for R packages
+* built from specifically formatted comments
+
+---
+class: center, middle
+
+# Demo
+
+---
+
+# References
+
+1. [Markdown Guide](https://guides.github.com/features/mastering-markdown/)
+2. [Reproducible Manuscripts using RMarkdown](https://elifesciences.org/elife-news/composing-reproducible-manuscripts-using-r-markdown)
+3. [Advice on Programming](http://bactra.org/weblog/593.html)
+
+---
+
+class: center, middle
+
+# Acknowledgments
+
+Class supported by:
+
+<img width=50% src = "mozilla_science_logo.png">
+<img width=50% src = "open_data_science_logo.png">
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
