@@ -29,6 +29,7 @@ Sean C. Anderson, Trevor A. Branch, Andrew B. Cooper, and Nicholas K. Dulvy. "Bl
 
 Sunagawa, S. et al. Ocean plankton. Structure and function of the global ocean microbiome. Science 348, 1261359 (2015). http://science.sciencemag.org/content/348/6237/1261359
 
+Morueta-Holme, Naia. "A network approach for inferring species associations from co-occurring data." Ecography 39: 1139–1150, 2016. http://onlinelibrary.wiley.com/store/10.1111/ecog.01892/asset/ecog1892.pdf?v=1&t=j1o34dxi&s=97eed83fb7448934fd902f984109f4255ddd0d4f
 
 ## Readings
 Morgan Taschuk, Greg Wilson. "Ten simple rules for making research software more robust" PLOS Comp Bio 13: e1005412 (2017). http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005412
