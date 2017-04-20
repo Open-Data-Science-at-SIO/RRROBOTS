@@ -1,0 +1,477 @@
+
+---
+title: "Power of PAM for MBay Harbor Porpoise"
+header-includes:
+   - \usepackage{caption}
+output: 
+  pdf_document:
+    latex_engine: xelatex
+
+---
+\begin{center}
+\Large{Eiren Jacobson} 
+\end{center}
+
+\begin{center}
+\large{`r format(Sys.time(), '%d %B %Y')`}
+\end{center}
+
+```{r ChunkOpts, echo=FALSE}
+knitr::opts_chunk$set(echo=TRUE, results="hide", message=FALSE, warning=FALSE)
+```
+
+
+# Estimating natural variability w.r.t. target CVs for monitoring
+
+## Using TRENDS to determine target CV
+
+Following Rojas-Bracho et al. (2010), I used the program TRENDS (Gerrodette 1987) to determine the required precision to detect trends:
+
+\begin{table}[h!]
+\centering
+\caption{Required precision (CVs) to detect changes of varying magnitudes.  Power = 0.8, Alpha = 0.05, Test = two-tailed.}
+\label{tab:echo}
+\def\arraystretch{1.25}
+
+\begin{tabular}{ccc}
+
+\vspace{3pt}
+\textbf{Change in Pop.} & 
+\textbf{No. Yrs} &
+\textbf{Target CV}\\
+\hline
+-50\% & 10 & 0.18 \\
+-25\% & 10 & 0.08 \\
+-10\% & 10 & 0.03 \\
+-5\% & 5 & 0.02 \\
+\hline
+
+\end{tabular}
+
+\end{table}
+
+## A simple population model to estimate natural variability
+
+Next, I used a population model to determine the expected variance in the abundance of the population given random processes of birth and death.  The code for this is in the file popModel.R.  In summary, using life history parameters from Taylor et al. (2007) as a guide, I constructed a simple model of the Monterey Bay harbor porpoise population. 
+
+Assumptions:
+
+* N = 2,500 = K (based on Forney et al. 2014, where the lower 20th percentile of the abundance estimate was 2,480)
+* Calf survival (1st year) S0 = 0.789, juvenile and adult survival S1 = 0.95
+* Individuals reach reproductive maturity at age 6
+* Taylor et al. (2007) report that the inter-birth interval = 1 year; however, a population at carrying capacity with the survivorship parameters described above and no other sources of mortality must have a fecundity lower than 0.5.  I therefore set the maximum fecundity = 0.5 (i.e., all adult females produce a calf), minimum fecundity = 0.165 (trial and error . . . ) and allowed f in a given year to vary depending on N/K: `f <- fmin+((fmax-fmin)*(1-(sum(N[t,])/K)^z))` with a compensation coefficient z = 3.
+* The initial age structure of the population was set so that 50% of individuals were adults, and the remainder of the population was allocated amongst the other age classes according to the survivorship expectations (a.k.a math)
+
+By running this population forward and experimenting with different values of fmin and fmax, I determined that at carrying capacity, f = 0.165 produces a stable harbor porpoise population over a 100 year period. 
+
+Next, I used the values of S0, S1, and f to simulate the change in a population from YR1 to YR2 due to stochasticity.
+
+For each individual in each age class, I simulated survival/non-survival, male/female, and calf/no calf as Bernoulli trials with probabilities given by S0 = 0.789, S1 = 0.95, and f = 0.165, with a starting population N = 2,500.
+
+```{r, caption="Population size in year 2 given a starting population of N = 2500 and random birth and death processes."}
+
+N.vec <- c(150, 115, 110, 105, 100, 95, 1825) # initial population structure 
+N.sto <- rep(NA, 10000) # number of iterations
+S0 = 0.789 # calf survival
+S1 = 0.95 # adult survival
+f = 0.165 # fecundity
+
+f <- 0.165
+for (i in 1:10000){
+  
+  nA <- sum(rbinom(N.vec[6], 1, S1)) + sum(rbinom(N.vec[7], 1, S1)) 
+  n0 <- sum(rbinom(sum(rbinom(N.vec[7], 1, 0.5)), 1, f))
+  n1 <- sum(rbinom(N.vec[1], 1, S0))
+  n2 <- sum(rbinom(N.vec[2], 1, S1))
+  n3 <- sum(rbinom(N.vec[3], 1, S1))
+  n4 <- sum(rbinom(N.vec[4], 1, S1))
+  n5 <- sum(rbinom(N.vec[5], 1, S1))
+  
+  N.sto[i] <- sum(nA + n0 + n1 + n2 + n3 + n4 + n5)
+  
+  }
+  
+ hist(N.sto, col="gray", main = "", xlab="Abundance in Year 2")
+  
+  
+
+
+```
+
+The variation in the population due to random chance leads to a CV of `r round(sd(N.sto)/mean(N.sto), digits = 3)`, which is an order of magnitude lower than the smallest target CVs shown in Table 1.  Therefore, we conclude that in a population of this size, stochasticity in birth and death processes produce changes in the population that are small relative to the population size.  We do not expect natural variability to limit statistical power to monitor the population.
+
+# Variability in the 3-year passive acoustic dataset
+
+* The mean PPS values measured across all stations and years is shown in the following table
+
+```{r, results="show", echo=FALSE}
+ 
+ require(data.table)
+ require(ggplot2)
+ require(reshape2)
+ require(nlme)
+ 
+ load("~/Desktop/acSim/Data/CpodPPS.RData")
+ 
+ means <-  PPS.Data[,.(Mean = mean(PPS)), 
+                           by = .(YEAR, MOORING)]
+ mean.table <-  dcast(means, MOORING~YEAR)
+
+ 
+ mean.table$ALL <- PPS.Data[,.(Mean = mean(PPS)), 
+                           by = .(MOORING)]$Mean
+
+d <- PPS.Data[,.(Mean = mean(PPS), Var = var(PPS)), 
+                           by = .(MOORING)]
+
+mean.table <- rbind.data.frame(mean.table, 
+                               cbind("MOORING"="ALL", "2013"=221.0256, "2014"=451.5736, "2015"=365.3147, "ALL" = 350.781))
+
+mean.table[,2] <- as.numeric(mean.table[,2])
+mean.table[,3] <- as.numeric(mean.table[,3])
+mean.table[,4] <- as.numeric(mean.table[,4])
+mean.table[,5] <- as.numeric(mean.table[,5])
+
+mean.table[,2:5] <- round(mean.table[,2:5], digits=0)
+
+mean.table
+
+```
+
+* I first constructed a linear mixed-effects model where year is a fixed effect and mooring is a random effect.  The response variable is the log(mean PPS) for each mooring and year.
+
+
+```{r, echo=TRUE, results="markup"}
+
+#names(CXY)[1] <- "MOORING"
+
+#means <- merge(CXY[,c(1,4)], means, by="MOORING")
+ 
+#model <- lme(fixed = log(Mean) ~ as.numeric(factor(YEAR)), 
+#             random = ~ 1 | MOORING, data = means)
+
+model <- glm(log(Mean) ~ as.numeric(factor(YEAR)), data=means)
+
+summary(model)
+
+# MODEL CHECKS RUN (RESULTS NOT SHOWN)
+# plot(model)
+# plot(model, YEAR ~ fitted(.))
+# plot(model, MOORING ~ fitted(.))
+# plot(model, resid(.) ~ fitted(.))
+# qqnorm(model, ~ resid(.) | YEAR)
+# qqnorm(model, ~ resid(.) | MOORING)
+# qqnorm(model, ~ resid(.) | Density)
+
+```
+
+
+```{r, echo=FALSE}
+
+plot(means$Mean, exp(predict(model)), pch = 19, 
+     xlab="Measured Mean PPS", ylab="Modeled Mean PPS",
+     xlim=c(0, 1500), ylim=c(0,1500))
+lines(c(0, 1500), c(0, 1500))
+
+```
+
+* Using this model, I predicted the PPS values for each station and year
+
+```{r, echo=FALSE, results="markup"}
+
+df <- (expand.grid("YEAR" = unique(means$YEAR), 
+                   "MOORING" = unique(means$MOORING)))
+#df <- merge(df, CXY[,c(1,4)], by="MOORING")
+
+df <- as.data.table(cbind(df, "Mean" = exp(predict(model, df))))
+
+dcast(df, MOORING~YEAR) # Predicted values for all stations and years
+
+```
+
+* And calculated the predicted PPS values for them missing moorings, which allowed me to calculate the CV
+
+```{r, echo=FALSE, results="markup"}
+
+mean.filled <- rbind.data.frame(means, df[c(7, 19, 11),])
+
+
+df.m <- mean.filled[, .(MEAN = mean(Mean)), by = .(YEAR)] # Average of pred. means
+
+df.m 
+
+CV <- round(sd(df.m$MEAN)/mean(df.m$MEAN), digits=2)
+```
+
+* The CV of the mean predicted PPS values across the three years is `r CV`
+
+* To reach a target CV of 0.08 (i.e., ability to detect a -25% change over 10 yrs), N = `r round(11*(CV^2)/(0.08^2))` sensors would be required.
+
+# Generating new data using the model estimates
+
+* From the model, I generated new data from n arbitrary stations over y years
+
+```{r}
+
+# need to write a new sim fun that generates locations
+# from locations, get densities from GAM model output
+# then generate PPS values according to mixed effects model (as below)
+
+# generating new data using the model output
+ 
+ simFun <- function(n, y, r){
+   
+   # n is the number of moorings
+   # y is the number of years
+   # r is the growth rate over the entire period
+   
+   # Generate single random intercept term 
+   int <- summary(model)$coefficients[1]
+   i.se <- summary(model)$coefficients[4]
+   i <- rnorm(1, int, i.se/sqrt(30))
+   
+   # Generate random effects for n moorings
+   #sig.b0 <- exp(unlist(model$modelStruct$reStruct))*model$sigma
+  # b0 <- rnorm(n, 0, sig.b0) 
+   
+   # Generate random effects for y years
+  # yr.eff <- fixef(model)[2]
+  # yr.se <- summary(model)$tTable[4]
+  # b1 <- rnorm(y, yr.eff, yr.se/sqrt(30))
+   
+   # Add noise to rate of change in population over time
+   if (r == 0) {cum.r <- rep(1, y)} else {
+   rvals <- rnorm(y-2, mean=((1+r)^(1/(y-1))), sd=0.05) # sd is arbitrary
+   rvals[y-1] <- (1+r)/prod(rvals[1:(y-2)]) # solve for final decline
+   rvals <- rvals[sample(1:(y-1), (y-1))] 
+   cum.r <- c(1, cumprod(rvals))}
+   
+   sdev <- VarCorr(model)
+   
+   df <- expand.grid("MOORING" = 1:n, 
+                     "YEAR" = 1:y, 
+                     "PPS" = NA)
+   
+   # PPS = exp(intercept + mooring effect + noise) * rate change
+   # removed: + b1[df$YEAR]
+   df$PPS <- exp(i + b0[df$MOORING]  + rnorm(n*y, 0, sd=sdev)) * cum.r[df$YEAR] 
+   
+   return(df)
+  
+ }
+
+new.data <- simFun(n = 50, y = 10, r = 0)
+
+plot(new.data$YEAR, new.data$PPS)
+
+new.model <- lme(fixed = log(PPS) ~ YEAR, 
+             random = ~ 1 | MOORING, data = new.data)
+
+summary(new.model)
+
+plot(new.model, resid(.) ~ fitted(.))
+
+```
+
+
+
+```{r, SimSetup, results="markup"}
+
+  
+  # using the same mixed-effects model as above
+
+n.moorings <- c(10, 50, 100)
+p.change <- seq(-0.5, 0.5, by = 0.05)
+nrep <- 1000
+tab.res <- data.frame()
+
+for (no in n.moorings){
+  
+  for (pc in p.change){
+    
+      r.est <- vector()
+  
+      for (i in 1:nrep){
+    
+        nd <- simFun(no, 10, pc)
+    
+        #nm <- lme(fixed = log(PPS) ~ YEAR, 
+        #     random = ~ 1 | MOORING, data = nd)
+        
+        nm <- lm(log(PPS) ~ YEAR, data=nd)
+    
+        ye <- ifelse(summary(nm)$coefficients[8]<0.05, 1, 0)
+    
+        r.est <- c(r.est, ye)
+    
+      } # end i in n.rep
+      
+      tab.res <- rbind.data.frame(tab.res, 
+                                  cbind.data.frame("No.M" = no, "P.Change" = pc, 
+                                                   "P.Dect" = sum(r.est)/length(r.est)))
+      
+  } # end pc in p.change
+    
+    
+  } # end nm in no. moorings
+
+
+table <- dcast(tab.res, No.M ~ P.Change)
+
+print(table)
+
+```
+
+```{r, results="markup"}
+
+# Adding spatial component to the model
+
+load("./Data/CXY.RData") # CXY
+load("./Data/predGrid.RData") #gridOut
+
+
+names(CXY)[4]<- "DENSITY"
+names(CXY)[1] <- "MOORING"
+
+means <-  PPS.Data[,.(Mean = mean(PPS)), 
+                           by = .(YEAR, MOORING)]
+
+means <- merge(CXY[,c(1,4)], means, by="MOORING")
+ 
+D.model <- glm(log(Mean) ~ as.numeric(factor(YEAR)) + log(DENSITY), data = means)
+
+summary(D.model)
+
+pred.grid <- expand.grid("DENSITY"=seq(0.1, 2.5, by=0.1), "YEAR"=1:3)
+
+p.vals <- predict(D.model, pred.grid)
+
+pred.grid <- cbind.data.frame(pred.grid, "Pred"=p.vals)
+
+ggplot(pred.grid, aes(x=DENSITY, y=Pred, group=YEAR, color=YEAR))+
+  geom_line()
+
+```
+
+```{r}
+
+simSpatial <- function(n, y, r){
+   
+   # n is the number of moorings
+   # y is the number of years
+   # r is the growth rate over the entire period
+  
+   # Choose random X, Y locations for n moorings and get D vals
+   #gO <- gridOut[which(gridOut$D>-40 & gridOut$D <=-10),]
+   d.n <- log(gridOut$PpSqKm[sample(1:nrow(gridOut), n, replace=TRUE)])
+   
+   # Generate single random intercept term 
+   int <- D.model$coefficients[1]
+   i.se <- summary(D.model)$coefficients[4]
+   i <- rnorm(1, int, i.se/sqrt(30))
+   
+   # Generate density effects for n spatial locs
+   d.eff <- summary(D.model)$coefficients[3]
+   d.se <- summary(D.model)$coefficients[6]
+   b1 <- rnorm(n, d.eff, d.se/sqrt(30))
+   
+   # Add noise to rate of change in population over time
+   if (r == 0) {cum.r <- rep(1, y)} else {
+   rvals <- rnorm(y-2, mean=((1+r)^(1/(y-1))), sd=0.05) # sd is arbitrary
+   rvals[y-1] <- (1+r)/prod(rvals[1:(y-2)]) # solve for final decline
+   rvals <- rvals[sample(1:(y-1), (y-1))] 
+   cum.r <- c(1, cumprod(rvals))}
+   
+   sdev <- sigma(D.model)
+   
+   df <- expand.grid("MOORING" = 1:n, 
+                     "YEAR" = 1:y, 
+                     "DENSITY" = NA, 
+                     "PPS"= NA)
+   df$DENSITY <- exp(rep(d.n, y))
+   
+   # PPS = exp(intercept + mooring effect + density effect + noise) * rate change
+   # not included: + b1[df$YEAR]
+   df$PPS <- exp(i + (b1*d.n)[df$MOORING] + rnorm(n*y, 0, sd=sdev)) * cum.r[df$YEAR] 
+   
+   return(df)
+  
+ }
+
+
+new.data <- as.matrix(simSpatial(n = 50, y = 10, r = -.25))
+
+new.data <- as.data.frame(new.data, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
+
+plot(new.data$YEAR, new.data$PPS)
+
+new.model <- lme(fixed = log(PPS) ~ YEAR, 
+             random = ~ 1 | MOORING, data = new.data)
+
+summary(new.model)
+
+plot(new.model, resid(.) ~ fitted(.))
+
+
+```
+
+```{r}
+
+n.moorings <- c(10, 100)
+p.change <- seq(-0.5, 0.5, by = 0.05)
+nrep <- 1000
+tab.res <- data.frame()
+
+for (no in n.moorings){
+  
+  for (pc in p.change){
+    
+      r.est <- vector()
+  
+      for (i in 1:nrep){
+    
+        nd <- as.matrix(simSpatial(no, 10, pc))
+
+        nd <- as.data.frame(nd, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
+    
+        nm <- lme(fixed = log(PPS) ~ YEAR, 
+             random = ~ 1 | MOORING, data = nd)
+        
+        ye <- ifelse(summary(nm)$tTable[10]<0.05 & sign(summary(nm)$tTable[2])==sign(pc), 1, 0)
+    
+        r.est <- c(r.est, ye)
+    
+      } # end i in n.rep
+      
+      tab.res <- rbind.data.frame(tab.res, 
+                                  cbind.data.frame("No.M" = no, "P.Change" = pc, 
+                                                   "P.Dect" = sum(r.est)/length(r.est)))
+      
+  } # end pc in p.change
+    
+    
+  } # end nm in no. moorings
+
+cbPalette <- c("#E69F00", "#56B4E9", "#009E73","#0072B2",  "#CC79A7")
+
+ggplot()+
+  geom_line(data=tab.res, aes(x=P.Change, y=P.Dect, 
+                              group=as.factor(No.M), color=as.factor(No.M)), size=1.5)+
+  scale_color_manual(name="No. Moorings", values=cbPalette)+
+  geom_line(data=data.frame("P.Change"=c(-0.5, 0.5), "P.Dect"=c(0.8, 0.8)), 
+            aes(x=P.Change, y=P.Dect), linetype=4, size=2)+
+  geom_line(data=data.frame("P.Change"=c(-0.5, -0.5), "P.Dect"=c(0.14, 0.33)), 
+            aes(x=P.Change, y=P.Dect) ,size =3, color = "red")+
+  xlab("Percent Change in Population")+
+  ylab("Power")+
+  scale_x_continuous(labels=scales::percent)+
+  theme_bw()+
+  theme(legend.key=element_blank())
+
+table <- dcast(tab.res, No.M ~ P.Change)
+
+print(table)
+
+
+```
+
