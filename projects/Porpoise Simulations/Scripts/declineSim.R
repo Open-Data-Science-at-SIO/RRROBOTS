@@ -61,7 +61,8 @@ decline <- function(density, impact, target, nyr){
     
     d <- dvals[i] # current decline value
      
-    X <- d*sum(P[[i]])/sum(P[[i]]*impact) # solve for multiplier
+    # X <- d*sum(P[[i]])/sum(P[[i]]*impact) # solve for multiplier
+    X <- 1/length(P)
     
     P[[i+1]] <- P[[i]]*impact*X # generate population in yr i + 1
     
