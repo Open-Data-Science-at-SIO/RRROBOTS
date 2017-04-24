@@ -2,7 +2,7 @@
 # for n moorings over y years given some rate of change
 # if d.min and d.max are not supplied, default 
 
-simSpatial <- function(n, y, r, d.min=0, d.max=-1000){
+simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   
   # n is the number of moorings
   # y is the number of years
@@ -18,8 +18,10 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000){
   load("./Data/predGrid.RData") #gridOut created by spDensity
   load("./Data/Dmodel.RData")
   
-  gridOut$Q <- gridOut$PpSqKm/sum(gridOut$PpSqKm)
-  
+  # the impact coefficient for the magnitude of the impact is scaled from 0 to 1
+  # according to habitat quality.  So high density areas have a lower I val.
+  gridOut$I <- (gridOut$PpSqKm*(1/(2*max(gridOut$PpSqKm)))) + 0.5
+
   # Choose random X, Y locations for n moorings and get D vals
   gO <- gridOut[which(gridOut$D>d.max & gridOut$D <= d.min),]
   gLocs <- gO[sample(1:nrow(gO), n, replace=FALSE),]
@@ -57,31 +59,40 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000){
   df$D <- rep(gLocs$D, y)
   
   
-  #X <- cum.r*sum(gridOut$PpSqKm)/sum(gridOut$PpSqKm*(1/gridOut$Q))
-  
   # PPS = exp(intercept + density effect + noise) * rate change
-  df$PPS <- exp(i + (b1*d.n)[df$MOORING] + rnorm(n*y, 0, sd=sdev)) * cum.r[df$YEAR] 
-  #* (1/gO$Q[df$MOORING]) * X[df$YEAR]
+  df$PPSorig <- exp(i + (b1*d.n)[df$MOORING] + rnorm(n*y, 0, sd=sdev))
   
+  # X corrects for habitat quality, so animals move towards core habitat
+      for (i in 1:y){
+        dsub <- subset(df, YEAR==i)
+      X[i] <- sum(dsub$PPSorig)/sum(dsub$PPSorig*gLocs$I)
+      }
+  if(b==0){df$PPS <- df$PPSorig * cum.r[df$YEAR]}else
+    if(b==1){df$PPS <- df$PPSorig * gLocs$I[df$MOORING] * cum.r[df$YEAR] * X[df$YEAR]}
+    
   return(df)
   
 }
 
-new.data <- simSpatial(n = nrow(gridOut), y = 10, r = -.5)
+new.data <- simSpatial(n = nrow(gridOut), y = 10, r = -.5, b = 1)
 load("./Data/coastXY.RData")
 require(animation)
 saveGIF(
-for (i in 1:10){
+for (i in 1:y){
 p <- ggplot()+
   ggtitle(paste("Year", i, sep=" "))+
-  geom_polygon(data=coast, aes(x=X, y=Y), fill="gray")+
-  geom_point(data=subset(new.data, YEAR==i), aes(x=X, y=Y, color=PPS), size=0.5)+
+  geom_polygon(data=coast, aes(x=X/1000, y=Y/1000), fill="gray")+
+  geom_point(data=subset(new.data, YEAR==i), 
+             aes(x=X/1000, y=Y/1000, color=PPS, size =PPS, alpha=PPS, stroke=1))+
+  scale_alpha_continuous(range=c(0.25, 1), guide="none")+
+  scale_size_continuous(range=c(0.1, 3), guide="none")+
   scale_color_gradient2(low="dodgerblue2", mid="yellow", high="red",
-                        midpoint=max(new.data$PPS)/2, limits=c(0, max(new.data$PPS)))+
+                        midpoint=(max(new.data$PPS)/2), 
+                        limits=c(0, max(new.data$PPS)))+
   theme_bw()+
-  coord_equal(xlim=c(-50000, 50000), ylim=c(-50000,50000))+
-  xlab("X (m)")+
-  ylab("Y (m)")+
+  coord_equal(xlim=c(-50, 50), ylim=c(-50, 50))+
+  xlab("X (km)")+
+  ylab("Y (km)")+
   theme(panel.grid.major=element_blank(), 
         panel.grid.minor=element_blank(),
         legend.key=element_blank(),
@@ -94,9 +105,9 @@ p <- ggplot()+
         legend.position=c(0.1, 0.2))+
   theme(plot.title = element_text(face="bold"))
 print(p)
-}, movie.name="./Figures/PPS.gif")
+}, movie.name="./Figures/PPScore.gif")
 
-?subset
+
 
 # Code for testing the function
 #
@@ -112,3 +123,5 @@ print(p)
 # summary(new.model)
 # 
 # plot(new.model, resid(.) ~ fitted(.))
+
+X <- sum(gridOut$PpSqKm)*0.5/sum(gridOut$PpSqKm * 1/(gridOut$Q) * 0.9)
