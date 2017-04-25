@@ -41,3 +41,6 @@ Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, Elvind Hovig. "Ten Simple Ru
 Malika Ihle, Isabel S Winney, Anna Krystalli, Michael Croucherd. "Striving for transparent and credible research: practical guidelines for behavioral ecologists" Behavioral Ecology (2017). https://academic.oup.com/beheco/article/3069145/Striving-for-transparent-and-credible-research
 
 Justin Kitzes, Daniel Turek, Fatma Deniz (Eds.). "The Practice of Reproducible Research" University of California Press (2017). https://www.gitbook.com/book/bids/the-practice-of-reproducible-research/details
+
+
+http://www.ifosslr.org/ifosslr/article/view/30/64
