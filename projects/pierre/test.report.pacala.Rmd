@@ -1,0 +1,16 @@
+---
+title: "Pacala tests"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(testthat)
+```
+
+## loading data
+```{r}
+test_file("C:\\dev\\pacala\\test.pacala_db.R")
+```
+
+
