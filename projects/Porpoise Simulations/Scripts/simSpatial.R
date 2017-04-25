@@ -4,6 +4,7 @@
 
 simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   
+
   # n is the number of moorings
   # y is the number of years
   # r is the growth rate over the entire period (e.g., for a 50% decline r = -0.5)
@@ -15,6 +16,7 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   # b is whether decline is applied uniformly over the study area (b=0; default)
   # or whether the decline results in contraction to core habitat (b=1)
   
+  require(nlme)
   load("./Data/predGrid.RData") #gridOut created by spDensity
   load("./Data/Dmodel.RData")
   
@@ -62,6 +64,7 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   # PPS = exp(intercept + density effect + noise) * rate change
   df$PPSorig <- exp(i + (b1*d.n)[df$MOORING] + rnorm(n*y, 0, sd=sdev))
   
+  X <- vector()
   # X corrects for habitat quality, so animals move towards core habitat
       for (i in 1:y){
         dsub <- subset(df, YEAR==i)
