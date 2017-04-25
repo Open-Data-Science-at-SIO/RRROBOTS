@@ -84,8 +84,8 @@ ggplot(pred.grid, aes(x=DENSITY, y=PredPPS, group=YEAR, color=YEAR))+
 ```
 
 ```{r}
-
-n.moorings <- c(10, 100)
+source("./Scripts/simSpatial")
+n.moorings <- c(10, 25, 50, 75, 100)
 p.change <- seq(-0.5, 0.5, by = 0.05)
 nrep <- 1000
 tab.res <- data.frame()
@@ -98,7 +98,7 @@ for (no in n.moorings){
   
       for (i in 1:nrep){
     
-        nd <- as.matrix(simSpatial(no, 10, pc))
+        nd <- as.matrix(simSpatial(no, 10, pc, b = 0))
 
         nd <- as.data.frame(nd, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
     
@@ -119,6 +119,12 @@ for (no in n.moorings){
     
     
   } # end nm in no. moorings
+
+#save(tab.res, file="./Data/simSpatialb1Results.RData")
+#save(tab.res, file="./Data/simSpatialb1StratResults.RData")
+#save(tab.res, file="./Data/simSpatialb0Results.RData")
+#save(tab.res, file="./Data/simSpatialb0StratResults.RData")
+
 
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73","#0072B2",  "#CC79A7")
 
