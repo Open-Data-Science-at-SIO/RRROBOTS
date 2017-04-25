@@ -29,6 +29,7 @@ Sean C. Anderson, Trevor A. Branch, Andrew B. Cooper, and Nicholas K. Dulvy. "Bl
 
 Sunagawa, S. et al. Ocean plankton. Structure and function of the global ocean microbiome. Science 348, 1261359 (2015). http://science.sciencemag.org/content/348/6237/1261359
 
+Morueta-Holme, Naia. "A network approach for inferring species associations from co-occurring data." Ecography 39: 1139–1150, 2016. http://onlinelibrary.wiley.com/store/10.1111/ecog.01892/asset/ecog1892.pdf?v=1&t=j1o34dxi&s=97eed83fb7448934fd902f984109f4255ddd0d4f
 
 ## Readings
 Morgan Taschuk, Greg Wilson. "Ten simple rules for making research software more robust" PLOS Comp Bio 13: e1005412 (2017). http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005412
@@ -40,3 +41,6 @@ Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, Elvind Hovig. "Ten Simple Ru
 Malika Ihle, Isabel S Winney, Anna Krystalli, Michael Croucherd. "Striving for transparent and credible research: practical guidelines for behavioral ecologists" Behavioral Ecology (2017). https://academic.oup.com/beheco/article/3069145/Striving-for-transparent-and-credible-research
 
 Justin Kitzes, Daniel Turek, Fatma Deniz (Eds.). "The Practice of Reproducible Research" University of California Press (2017). https://www.gitbook.com/book/bids/the-practice-of-reproducible-research/details
+
+
+http://www.ifosslr.org/ifosslr/article/view/30/64
