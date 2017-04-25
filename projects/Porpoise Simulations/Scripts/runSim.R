@@ -46,11 +46,17 @@ runSim <- function(n.moorings, p.change, nrep, b, d.min, d.max, file.out){
 
 
 n.moorings <- c(10, 25, 50, 75, 100)
-p.change <- seq(-0.5, 0.5, by = 0.05)
-nrep <- 1000
+p.change.fig <- seq(-0.5, 0.5, by = 0.05)
+p.change.table <- c(-0.5, -0.25, -0.1, 0.25)
+nrep <- 10000
 #runSim(n.moorings, p.change, nrep, b, d.min, d.max, file.out)
-runSim(n.moorings, p.change, nrep, 0, file.out="./Data/simSpatialb0Results.RData")
-  
+runSim(n.moorings, p.change.fig, 1000, 0, file.out="./Data/simSpatialb0Results.RData")
+
+runSim(n.moorings, p.change.table, nrep, 0, file.out="./Data/simSpatialb0Resultsx10000.RData")
+runSim(n.moorings, p.change.table, nrep, 1, file.out="./Data/simSpatialb1Resultsx10000.RData")
+runSim(n.moorings, p.change.table, nrep, 0, d.min=0, d.max=-200, file.out="./Data/simSpatialStratb0Resultsx10000.RData")
+runSim(n.moorings, p.change.table, nrep, 1, d.min=0, d.max=-200, file.out="./Data/simSpatialStratb1Resultsx10000.RData")
+
 
 
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73","#0072B2",  "#CC79A7")
