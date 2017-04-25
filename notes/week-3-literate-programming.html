@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Literate Programming &amp; Documentation</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Hao Ye" />
+    <link href="libs/remark-css/example.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotlyjs/plotly-latest.min.js"></script>
+    <script src="libs/plotly-binding/plotly.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <script src="libs/typedarray/typedarray.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Literate Programming &amp; Documentation
+## RRROBOTS Week 3
+### Hao Ye
+### 2017, April 18
+
+---
+
+
+# Lesson Objectives
+
+### Project Status
+### Literate Programming
+### Documentation
+
+---
+class: center, middle, inverse
+
+# Project Status
+
+---
+
+# Project Check-in
+
+### What stage are you at?
+* Paper / group defined?
+
+### Develop a Roadmap
+* What are your objectives?
+* How do you know your project is complete?
+
+---
+
+# GitHub issues
+
+### Remember, GitHub originally intended as a tool for software development!
+
+--
+
+### Why?
+* plan out what you are going to do ("issue" == "bug" == "feature")
+* be specific about tasks
+* organization of work
+
+### Collaborations
+* threaded (opt-in) discussion
+* prevent duplication of effort and unnecessary emails
+
+---
+
+# Intro to Markdown
+
+### Why learn yet another syntax?
+* It allows you to format your docs:
+  - GitHub will automatically render `readme` files within folders.
+  - If it has a `.md` extension, Markdown formatting will be applied.
+* Many sites use Markdown formatting:
+  - StackOverflow Qs and Responses
+  - GitHub project interfaces
+* It has very little added complexity - the raw text is human-readable.
+* GitHub Integration: 
+  - keywords will automagically close issues:
+    https://help.github.com/articles/closing-issues-via-commit-messages/
+
+---
+
+# Basic Markdown
+
+```
+# Header level 1
+## Header level 2
+
+*italicized text*
+
+**bolded text**
+
+[link text](link URL)
+
+* Bullet Points
+  - indented bullets
+    1. numbered
+    2. list
+    3. items
+```
+---
+
+class: center, middle, inverse
+
+# Literate Programming
+
+---
+
+# What is it?
+
+1. Describe what you want to do in normal language (e.g. English)
+
+2. Write code to do your computations.
+
+  - Hide the messy bits that are not relevant for describing the analysis.
+  
+3. Generate the output.
+  
+4. Glue it all together:
+
+  - the story
+  - the code
+  - the results
+  
+--
+
+### Yeah, it's sort of like a scientific paper!
+
+---
+
+class: center, middle
+
+# What Can We Use It For?
+
+---
+
+# Use Cases
+
+### Package Vignettes and Tutorials
+* https://github.com/tidyverse/ggplot2
+* https://github.com/datacarpentry/R-ecology-lesson
+
+### Reports, Supplements, Papers
+* https://github.com/SimonGoring/GoringetalPollenRichness
+* http://www.collabra.org/article/10.1525/collabra.71/
+
+---
+
+# Advanced Use Cases
+
+* Slides
+  - Beamer Template (LaTeX)
+  - `xaringan` package (what this is created with)
+
+* Websites
+  - `blogdown` package
+
+* Books
+  - `bookdown` package
+  
+* Theses
+  - `thesisdown` package
+
+---
+
+# Why Use It?
+
+### No more copy-pasting of numerical results, tables, etc.
+
+### No more toggling back and forth between the text and the code.
+
+--
+
+### It keeps everything organized and consistent!
+
+---
+class: center, middle
+
+# Demo
+
+---
+
+# Real-Time Embedding of Code and Output
+
+
+
+
+```r
+ggplotly(ggplot(iris, aes(x = Petal.Length, y = Sepal.Width, color = Species)) + 
+             geom_point() + theme_bw())
+```
+
+<div id="htmlwidget-603d7862a9a9cfed23bd" style="width:672px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-603d7862a9a9cfed23bd">{"x":{"data":[{"x":[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4],"y":[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3,3.4,3.5,2.3,3.2,3.5,3.8,3,3.8,3.2,3.7,3.3],"text":["Petal.Length: 1.4<br />Sepal.Width: 3.5<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 3.2<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.1<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.6<br />Species: setosa","Petal.Length: 1.7<br />Sepal.Width: 3.9<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 2.9<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.1<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.7<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3<br />Species: setosa","Petal.Length: 1.1<br />Sepal.Width: 3<br />Species: setosa","Petal.Length: 1.2<br />Sepal.Width: 4<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 4.4<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 3.9<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.5<br />Species: setosa","Petal.Length: 1.7<br />Sepal.Width: 3.8<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.8<br />Species: setosa","Petal.Length: 1.7<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.7<br />Species: setosa","Petal.Length: 1<br />Sepal.Width: 3.6<br />Species: setosa","Petal.Length: 1.7<br />Sepal.Width: 3.3<br />Species: setosa","Petal.Length: 1.9<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.5<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3.2<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3.1<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 4.1<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 4.2<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.1<br />Species: setosa","Petal.Length: 1.2<br />Sepal.Width: 3.2<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 3.5<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.6<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 3<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.4<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 3.5<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 2.3<br />Species: setosa","Petal.Length: 1.3<br />Sepal.Width: 3.2<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3.5<br />Species: setosa","Petal.Length: 1.9<br />Sepal.Width: 3.8<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3<br />Species: setosa","Petal.Length: 1.6<br />Sepal.Width: 3.8<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.2<br />Species: setosa","Petal.Length: 1.5<br />Sepal.Width: 3.7<br />Species: setosa","Petal.Length: 1.4<br />Sepal.Width: 3.3<br />Species: setosa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"setosa","legendgroup":"setosa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1],"y":[3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2,3,2.2,2.9,2.9,3.1,3,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3,2.8,3,2.9,2.6,2.4,2.4,2.7,2.7,3,3.4,3.1,2.3,3,2.5,2.6,3,2.6,2.3,2.7,3,2.9,2.9,2.5,2.8],"text":["Petal.Length: 4.7<br />Sepal.Width: 3.2<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 3.2<br />Species: versicolor","Petal.Length: 4.9<br />Sepal.Width: 3.1<br />Species: versicolor","Petal.Length: 4<br />Sepal.Width: 2.3<br />Species: versicolor","Petal.Length: 4.6<br />Sepal.Width: 2.8<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 2.8<br />Species: versicolor","Petal.Length: 4.7<br />Sepal.Width: 3.3<br />Species: versicolor","Petal.Length: 3.3<br />Sepal.Width: 2.4<br />Species: versicolor","Petal.Length: 4.6<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 3.9<br />Sepal.Width: 2.7<br />Species: versicolor","Petal.Length: 3.5<br />Sepal.Width: 2<br />Species: versicolor","Petal.Length: 4.2<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4<br />Sepal.Width: 2.2<br />Species: versicolor","Petal.Length: 4.7<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 3.6<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 4.4<br />Sepal.Width: 3.1<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4.1<br />Sepal.Width: 2.7<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 2.2<br />Species: versicolor","Petal.Length: 3.9<br />Sepal.Width: 2.5<br />Species: versicolor","Petal.Length: 4.8<br />Sepal.Width: 3.2<br />Species: versicolor","Petal.Length: 4<br />Sepal.Width: 2.8<br />Species: versicolor","Petal.Length: 4.9<br />Sepal.Width: 2.5<br />Species: versicolor","Petal.Length: 4.7<br />Sepal.Width: 2.8<br />Species: versicolor","Petal.Length: 4.3<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 4.4<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4.8<br />Sepal.Width: 2.8<br />Species: versicolor","Petal.Length: 5<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 3.5<br />Sepal.Width: 2.6<br />Species: versicolor","Petal.Length: 3.8<br />Sepal.Width: 2.4<br />Species: versicolor","Petal.Length: 3.7<br />Sepal.Width: 2.4<br />Species: versicolor","Petal.Length: 3.9<br />Sepal.Width: 2.7<br />Species: versicolor","Petal.Length: 5.1<br />Sepal.Width: 2.7<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4.5<br />Sepal.Width: 3.4<br />Species: versicolor","Petal.Length: 4.7<br />Sepal.Width: 3.1<br />Species: versicolor","Petal.Length: 4.4<br />Sepal.Width: 2.3<br />Species: versicolor","Petal.Length: 4.1<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4<br />Sepal.Width: 2.5<br />Species: versicolor","Petal.Length: 4.4<br />Sepal.Width: 2.6<br />Species: versicolor","Petal.Length: 4.6<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4<br />Sepal.Width: 2.6<br />Species: versicolor","Petal.Length: 3.3<br />Sepal.Width: 2.3<br />Species: versicolor","Petal.Length: 4.2<br />Sepal.Width: 2.7<br />Species: versicolor","Petal.Length: 4.2<br />Sepal.Width: 3<br />Species: versicolor","Petal.Length: 4.2<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 4.3<br />Sepal.Width: 2.9<br />Species: versicolor","Petal.Length: 3<br />Sepal.Width: 2.5<br />Species: versicolor","Petal.Length: 4.1<br />Sepal.Width: 2.8<br />Species: versicolor"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"versicolor","legendgroup":"versicolor","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],"y":[3.3,2.7,3,2.9,3,3,2.5,2.9,2.5,3.6,3.2,2.7,3,2.5,2.8,3.2,3,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3,2.8,3,2.8,3.8,2.8,2.8,2.6,3,3.4,3.1,3,3.1,3.1,3.1,2.7,3.2,3.3,3,2.5,3,3.4,3],"text":["Petal.Length: 6<br />Sepal.Width: 3.3<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 2.7<br />Species: virginica","Petal.Length: 5.9<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5.6<br />Sepal.Width: 2.9<br />Species: virginica","Petal.Length: 5.8<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 6.6<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 4.5<br />Sepal.Width: 2.5<br />Species: virginica","Petal.Length: 6.3<br />Sepal.Width: 2.9<br />Species: virginica","Petal.Length: 5.8<br />Sepal.Width: 2.5<br />Species: virginica","Petal.Length: 6.1<br />Sepal.Width: 3.6<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 3.2<br />Species: virginica","Petal.Length: 5.3<br />Sepal.Width: 2.7<br />Species: virginica","Petal.Length: 5.5<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5<br />Sepal.Width: 2.5<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 5.3<br />Sepal.Width: 3.2<br />Species: virginica","Petal.Length: 5.5<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 6.7<br />Sepal.Width: 3.8<br />Species: virginica","Petal.Length: 6.9<br />Sepal.Width: 2.6<br />Species: virginica","Petal.Length: 5<br />Sepal.Width: 2.2<br />Species: virginica","Petal.Length: 5.7<br />Sepal.Width: 3.2<br />Species: virginica","Petal.Length: 4.9<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 6.7<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 4.9<br />Sepal.Width: 2.7<br />Species: virginica","Petal.Length: 5.7<br />Sepal.Width: 3.3<br />Species: virginica","Petal.Length: 6<br />Sepal.Width: 3.2<br />Species: virginica","Petal.Length: 4.8<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 4.9<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5.6<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 5.8<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 6.1<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 6.4<br />Sepal.Width: 3.8<br />Species: virginica","Petal.Length: 5.6<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 2.8<br />Species: virginica","Petal.Length: 5.6<br />Sepal.Width: 2.6<br />Species: virginica","Petal.Length: 6.1<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5.6<br />Sepal.Width: 3.4<br />Species: virginica","Petal.Length: 5.5<br />Sepal.Width: 3.1<br />Species: virginica","Petal.Length: 4.8<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5.4<br />Sepal.Width: 3.1<br />Species: virginica","Petal.Length: 5.6<br />Sepal.Width: 3.1<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 3.1<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 2.7<br />Species: virginica","Petal.Length: 5.9<br />Sepal.Width: 3.2<br />Species: virginica","Petal.Length: 5.7<br />Sepal.Width: 3.3<br />Species: virginica","Petal.Length: 5.2<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5<br />Sepal.Width: 2.5<br />Species: virginica","Petal.Length: 5.2<br />Sepal.Width: 3<br />Species: virginica","Petal.Length: 5.4<br />Sepal.Width: 3.4<br />Species: virginica","Petal.Length: 5.1<br />Sepal.Width: 3<br />Species: virginica"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"virginica","legendgroup":"virginica","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":28.7853881278539,"r":7.30593607305936,"b":42.7397260273973,"l":43.1050228310502},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[0.705,7.195],"ticktext":["2","4","6"],"tickvals":[2,4,6],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"Petal.Length","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[1.88,4.52],"ticktext":["2.0","2.5","3.0","3.5","4.0","4.5"],"tickvals":[2,2.5,3,3.5,4,4.5],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"Sepal.Width","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.891732283464567},"annotations":[{"text":"Species","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","dragmode":"zoom"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"modeBarButtonsToRemove":["sendDataToCloud"]},"source":"A","attrs":{"8ce66c40aace":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"8ce66c40aace","visdat":{"8ce66c40aace":["function (y) ","x"]},"highlight":{"on":"plotly_selected","off":"plotly_relayout","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"showInLegend":false,"ctGroups":[]},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_selected\",\"off\":\"plotly_relayout\",\"persistent\":false,\"dynamic\":false,\"color\":{},\"selectize\":false,\"defaultValues\":{},\"opacityDim\":0.2,\"hoverinfo\":{},\"showInLegend\":false}); }","data":null}]}}</script>
+
+---
+class: center, middle, inverse
+
+# Documentation
+
+---
+
+# Function Documentation
+
+### Goals
+* describe what the function does without having to read the code
+* clarify the inputs and outputs so that others can build on either end
+
+### Guidelines
+1. what it does;
+2. what all its inputs are (in order);
+3. what it requires of the inputs and the state of the system ("presumes")'
+4. what side-effects it may have (e.g., "plots histogram of residuals");
+5. what all its outputs are (in order)
+
+---
+
+# Project Documentation
+
+### Map the location of things in the Readme
+
+### Describe the general flow of analysis in scripts or markdown
+* Usually I have both
+  - a script for testing and running interactively
+  - a markdown report of the whole "pipeline" and results
+  
+### Use GitHub to track stuff!
+
+---
+
+# Package Documentation
+
+R uses packages to extend the language functionality.
+
+### Packages are easy to write
+* very little overhead if for personal use
+* RStudio will take care of lots of things for you
+* uploading to CRAN makes it available for others, requires more extensive documentation
+* can be code or data
+
+### Roxygen 
+* a package and plug-in for RStudio
+* generated `.rd` files, correctly formatted documentation for R packages
+* built from specifically formatted comments
+
+---
+class: center, middle
+
+# Demo
+
+---
+
+# References
+
+1. [Markdown Guide](https://guides.github.com/features/mastering-markdown/)
+2. [Reproducible Manuscripts using RMarkdown](https://elifesciences.org/elife-news/composing-reproducible-manuscripts-using-r-markdown)
+3. [Advice on Programming](http://bactra.org/weblog/593.html)
+
+---
+
+class: center, middle
+
+# Acknowledgments
+
+Class supported by:
+
+&lt;img width=50% src = "mozilla_science_logo.png"&gt;
+&lt;img width=50% src = "open_data_science_logo.png"&gt;
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

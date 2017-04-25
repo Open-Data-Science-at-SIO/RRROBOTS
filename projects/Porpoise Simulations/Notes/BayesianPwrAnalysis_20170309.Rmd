@@ -1,0 +1,181 @@
+
+---
+title: "Bayesian Power of PAM for MBay Pp"
+header-includes:
+   - \usepackage{caption}
+output: 
+  pdf_document:
+    latex_engine: xelatex
+
+---
+\begin{center}
+\Large{Eiren Jacobson} 
+\end{center}
+
+\begin{center}
+\large{`r format(Sys.time(), '%d %B %Y')`}
+\end{center}
+
+```{r ChunkOpts, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, results="hide", message=FALSE, warning=FALSE, fig.align="center")
+```
+
+# Using MBay data to generate parameters for simulation
+
+* The mean PPS values measured across all stations and years is shown in the following table
+
+```{r, results="show", echo=FALSE}
+ 
+ require(data.table)
+ require(ggplot2)
+ require(reshape2)
+ setwd("~/Desktop/acSim/")
+ 
+ load("./Data/CpodPPS.RData")
+ 
+ mbay.data <-  PPS.Data[,.(PPS = mean(PPS)), 
+                           by = .(YEAR, MOORING)]
+ mean.table <-  dcast(mbay.data, MOORING~YEAR)
+
+ 
+ mean.table$ALL <- PPS.Data[,.(PPS = mean(PPS)), 
+                           by = .(MOORING)]$PPS
+
+# d <- PPS.Data[,.(Mean = mean(PPS), Var = var(PPS)), 
+#                            by = .(MOORING)]
+
+mean.table <- rbind.data.frame(mean.table, 
+                               cbind("MOORING"="ALL", "2013"=221.0256, "2014"=451.5736, "2015"=365.3147, "ALL" = 350.781))
+
+mean.table[,2] <- as.numeric(mean.table[,2])
+mean.table[,3] <- as.numeric(mean.table[,3])
+mean.table[,4] <- as.numeric(mean.table[,4])
+mean.table[,5] <- as.numeric(mean.table[,5])
+
+mean.table[,2:5] <- round(mean.table[,2:5], digits=0)
+
+mean.table
+
+```
+
+* First, I combined these passive acoustic data with porpoise density estimates 
+* The density estimates come from a GAM of aerial survey data collected between 2000 and 2013
+
+```{r, echo=FALSE, results="markup", height=2}
+
+load("./Data/CXY.RData") # CXY
+
+names(CXY)[1] <- "MOORING"
+
+mbay.data <- as.data.table(merge(CXY, mbay.data, by="MOORING"))
+
+m <- mbay.data[,.(Mean = mean(PPS), Density=mean(Density)), 
+                           by = .(MOORING)]
+
+plot(log(m$Density), log(m$Mean), pch=19,
+     xlab = "log(Mean Porpoise Density)", ylab="log(Mean PPS)", main = "Real Data")
+```
+
+```{r, results="markup", echo=FALSE, width=3, height=3}
+
+
+load("./Data/predGrid.RData") #gridOut
+load("./Data/coastXY.RData") # coast
+
+ggplot()+
+  geom_polygon(data=coast, aes(x=X/1000, y=Y/1000), fill="gray")+
+  geom_point(data=gridOut, aes(x=X/1000, y=Y/1000, color=PpSqKm), size=1)+
+  scale_color_gradient2(name=bquote('Density ('*km^-2*')'),
+                        low="dodgerblue2", mid="yellow", high="red", 
+                        midpoint=max(gridOut$PpSqKm)/2, limits=c(0, max(gridOut$PpSqKm)))+
+  theme_bw()+
+  coord_equal(xlim=c(-50, 50), ylim=c(-50,50))+
+  xlab("X (km)")+
+  ylab("Y (km)")+
+  theme(panel.grid.major=element_blank(), 
+        panel.grid.minor=element_blank(),
+        legend.key=element_blank(),
+        legend.title=element_text(face="bold", size=10),
+        
+        strip.background=element_blank(),
+        panel.margin=unit(1.25, "lines"),
+        legend.key.height=unit(c(1.25), "lines"),
+        plot.margin=unit(c(0, 0, 0, 0), "lines"),
+        legend.position=c(0.2, 0.3))
+
+
+
+```
+
+* Now, to build a Bayesian model 
+
+```{r}
+
+require(R2jags)
+
+model.string <- "
+    
+  model{
+  
+  # Priors
+  # Parameters to be estimated
+  beta1 ~ dunif(0, 2) # rate of change between years
+  beta2 ~ dunif(0, 1000) # effect of density
+  a ~ dunif(0.001, 10) # shape/scale parameter for gamma
+
+  # Likelihood
+  for (i in 1:nsite){
+
+      # Underlying 'true' mean density from GAM/spline estimate
+      d[i] ~ dlnorm(D.mu[i], D.tau[i]) # D.mu & D.tau are l-transformed
+    
+    for (j in 1:nyear){
+    
+    C[i, j] ~ dpois(n.hat[i, j]*rho[i, j]) # NB distribution
+    rho[i, j] ~ dgamma(a, a) 
+    n.hat[i, j] <- pow(beta1,j)*(beta2*d[i])  # predictor
+    
+    } # end for j
+    
+  } # end for i
+
+  } # end model
+
+"
+
+x <- dcast(mbay.data, MOORING ~ YEAR, value.var="PPS")
+
+data <- list(C = round(x[,-1]), nsite=length(unique(mbay.data$MOORING)), 
+             nyear = length(unique(mbay.data$YEAR)),
+             D.mu = log(unique(mbay.data$Density)),
+             D.tau = 1/log(unique(mbay.data$SE.D)^2/unique(mbay.data$Density)^2 + 1))
+
+inits <- list(beta1 = 1,
+              beta2 = 1,
+              a = 1)
+
+model.out <- jags.model(file=textConnection(model.string),
+                          data, 
+                          inits = inits,
+                          n.adapt = 1000, 
+                          n.chains = 4, 
+                          quiet = T)
+
+samples <- coda.samples(model.out, c('beta1', 'beta2'), n.iter=10000, thin=10)
+
+pars <- summary(samples)$statistics
+
+model <- glm(round(log(mbay.data$PPS), digits=0) ~ y + log(mbay.data$Density), family=poisson, link=log)
+
+eg <- expand.grid("y"=1:3, "d"=seq(0, 3, by=0.25), "pps" = NA)
+eg$pps <- (pars[1]^eg$y)*(pars[2]*eg$d)
+
+names(eg)[1] <- "YEAR"
+ggplot()+
+  geom_point(data=mbay.data, aes(x=Density, y=PPS, 
+                                 color=as.factor(as.numeric(as.factor(mbay.data$YEAR)))))+
+  geom_line(data=eg, aes(x=d, y=pps, color=as.factor(YEAR)))+
+  scale_color_discrete(name="Year")+
+  theme_bw()
+
+```
