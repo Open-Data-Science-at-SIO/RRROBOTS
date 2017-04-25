@@ -1,0 +1,54 @@
+---
+title: " Pacala Forest Simulator"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("pacala.R")
+```
+
+Pacala, Canham, Silander (1993) Can J For Res 23: 1980-88
+
+###Objective
+* spatailly explicit model of forest dynamic
+* based on submodel predicting growth, dispersal, survival, recruitment
+* based on submodel predicting local availability of resources
+* competition is purely mechanistic, only interact by resource depletion
+
+```{r}
+c.x.max = 1000
+c.y.max = 1000
+
+```
+
+###Model design
+Using a $c.x.max$ x $c.y.max$ grid 
+With circular, non-overlapping trees
+
+## Exploring the data
+Load the data and look at it
+```{r load model data, echo=F}
+db = load_pacala_data()
+prms = load_pacala_params()
+attach(db)
+attach(prms)
+print (db)
+print (prms)
+```
+```{r, echo=F}
+# draw the plot
+draw_landscape(db[["ID"]], db[["Species"]], db[["Diameter"]], db[["x"]], db[["y"]], c.x.max, c.y.max)
+
+```
+
+### Generate resource availibity for each individual
+using a light model of a single point source at origin with any point's intesity proportional to it distance from the source
+```{r, echo=F}
+resource.vect = generate_light_vector(db[["x"]], db[["y"]])
+resource.vect
+```
+```{r, echo=F}
+tmp = growth_submodel(db[["Diameter"]]/2, prms[["P1"]], prms[["P1"]], resource.vect[1], 1, prms[["D"]])
+tmp
+```
