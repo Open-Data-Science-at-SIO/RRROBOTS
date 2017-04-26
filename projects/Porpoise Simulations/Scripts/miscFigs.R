@@ -35,18 +35,20 @@ height=4, width=4, units="in")
 
 # GIF of decline towards core habitat with full coverage of sensors
 source("./Scripts/simSpatial.R")
-new.data <- simSpatial(n = nrow(gridOut), y = 10, r = -.5, b = 1)
+new.data <- simSpatial(n = nrow(gridOut), y = 10, r = -.5, b = 0)
 load("./Data/coastXY.RData")
 require(animation)
 saveGIF(
 for (i in 1:y){
 p <- ggplot()+
   ggtitle(paste("Year", i, sep=" "))+
-  geom_polygon(data=coast, aes(x=X/1000, y=Y/1000), fill="gray")+
   geom_point(data=subset(new.data, YEAR==i), 
-             aes(x=X/1000, y=Y/1000, color=PPS, size =PPS, alpha=PPS, stroke=1))+
-  scale_alpha_continuous(range=c(0.25, 1), guide="none")+
-  scale_size_continuous(range=c(0.1, 3), guide="none")+
+             aes(x=X/1000, y=Y/1000, color=PPS, alpha=PPS), size=1.25, stroke=0)+
+  geom_point(data=subset(new.data, YEAR==i & PPS>2000), 
+             aes(x=X/1000, y=Y/1000, color=PPS), size =1.5, alpha=1, stroke=0)+
+  geom_polygon(data=coast, aes(x=X/1000, y=Y/1000), fill="gray")+
+  scale_size_continuous(range=c(0.5, 2), limits=c(0, max(new.data$PPS)), guide="none")+
+  scale_alpha_continuous(range=0.75, 1, limits=c(0, max(new.data$PPS)), guide="none")+
   scale_color_gradient2(low="dodgerblue2", mid="yellow", high="red",
                         midpoint=(max(new.data$PPS)/2), 
                         limits=c(0, max(new.data$PPS)))+
@@ -66,6 +68,6 @@ p <- ggplot()+
         legend.position=c(0.1, 0.2))+
   theme(plot.title = element_text(face="bold"))
 print(p)
-}, movie.name="./Figures/PPScore.gif")
+}, movie.name="./Figures/PPS.gif")
 
 
