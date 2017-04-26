@@ -74,54 +74,19 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   
 }
 
-# new.data <- simSpatial(n = nrow(gridOut), y = 10, r = -.5, b = 1)
-# load("./Data/coastXY.RData")
-# require(animation)
-# saveGIF(
-# for (i in 1:y){
-# p <- ggplot()+
-#   ggtitle(paste("Year", i, sep=" "))+
-#   geom_polygon(data=coast, aes(x=X/1000, y=Y/1000), fill="gray")+
-#   geom_point(data=subset(new.data, YEAR==i), 
-#              aes(x=X/1000, y=Y/1000, color=PPS, size =PPS, alpha=PPS, stroke=1))+
-#   scale_alpha_continuous(range=c(0.25, 1), guide="none")+
-#   scale_size_continuous(range=c(0.1, 3), guide="none")+
-#   scale_color_gradient2(low="dodgerblue2", mid="yellow", high="red",
-#                         midpoint=(max(new.data$PPS)/2), 
-#                         limits=c(0, max(new.data$PPS)))+
-#   theme_bw()+
-#   coord_equal(xlim=c(-50, 50), ylim=c(-50, 50))+
-#   xlab("X (km)")+
-#   ylab("Y (km)")+
-#   theme(panel.grid.major=element_blank(), 
-#         panel.grid.minor=element_blank(),
-#         legend.key=element_blank(),
-#         legend.title=element_text(face="bold", size=10),
-#         
-#         strip.background=element_blank(),
-#         panel.margin=unit(1.25, "lines"),
-#         legend.key.height=unit(c(1.25), "lines"),
-#         plot.margin=unit(c(2, 0, 0, 0), "lines"),
-#         legend.position=c(0.1, 0.2))+
-#   theme(plot.title = element_text(face="bold"))
-# print(p)
-# }, movie.name="./Figures/PPScore.gif")
+
+# Code for testing the function
+#
+# new.data <- simSpatial(n = 50, y = 10, r = -.25)
 # 
+# new.data <- as.data.frame(new.data, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
 # 
+# plot(new.data$YEAR, new.data$PPS)
 # 
-# # Code for testing the function
-# #
-# # new.data <- simSpatial(n = 50, y = 10, r = -.25)
-# # 
-# # new.data <- as.data.frame(new.data, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
-# # 
-# # plot(new.data$YEAR, new.data$PPS)
-# # 
-# # new.model <- lme(fixed = log(PPS) ~ YEAR, 
-# #                  random = ~ 1 | MOORING, data = new.data)
-# # 
-# # summary(new.model)
-# # 
-# # plot(new.model, resid(.) ~ fitted(.))
+# new.model <- lme(fixed = log(PPS) ~ YEAR, 
+#                  random = ~ 1 | MOORING, data = new.data)
 # 
-# X <- sum(gridOut$PpSqKm)*0.5/sum(gridOut$PpSqKm * 1/(gridOut$Q) * 0.9)
+# summary(new.model)
+# 
+# plot(new.model, resid(.) ~ fitted(.))
+
