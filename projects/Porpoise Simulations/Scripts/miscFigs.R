@@ -1,29 +1,37 @@
+require(ggplot2)
+
 # Figure to show relationship between density and PPS
 # Requires PPS transformed to df called means, as in PAMPwrProject.Rmd
+ggsave("./Figures/DensityVsPPS.pdf",
 ggplot(means, aes(x=DENSITY, y=Mean))+
   geom_smooth(method="glm", formula = log(y) ~ log(x))+
   geom_point(aes(x=DENSITY, y=log(Mean)))+
   xlab("Mean Porpoise Density Estimated by Spline")+
   ylab("Log Mean PPS Observed by C-PODs")+
-  theme_bw()
+  theme_bw(),
+ height=4, width=4, units="in")
 
 # Figure to show the impact of decline on moorings
+ggsave("./Figures/PPSReduction.pdf", 
 ggplot()+
   geom_point(data=subset(df, MOORING==1), aes(x=as.factor(YEAR), y=PPSorig))+
   geom_point(data=subset(df, MOORING==1), aes(x=as.factor(YEAR), y=PPS), color="red", fill="red", shape=25)+
   ylim(c(0, 600))+
   xlab("YEAR")+
   ylab("Simulated PPS")+
-  theme_bw()
+  theme_bw(),
+height=4, width=4, units="in")
 
 # Figure to show simulated non-uniform decline
 r.df <- data.frame("YEAR"=1:10, "P"=cum.r)
+ggsave("./Figures/NonunifDecline.pdf",
 ggplot(r.df, aes(x=as.factor(YEAR), y=P))+
   geom_point()+
   ylim(c(0,1))+
   xlab("Year")+
   ylab("Proportion of Original Population")+
-  theme_bw()
+  theme_bw(),
+height=4, width=4, units="in")
 
 # GIF of decline towards core habitat with full coverage of sensors
 source("./Scripts/simSpatial.R")
