@@ -27,6 +27,8 @@ We can always use help checking our work for typos or minor errors.
 
 You may also want to suggest a paper to reproduce: https://github.com/Open-Data-Science-at-SIO/RRROBOTS/blob/master/PAPERS.md
 
+Please also take a look at our existing list of issues to see where we could use some assistance! (though note that the issues are also being used for project tracking).
+
 ## List of Participants for the Course
 
 | Name                  | Affiliation                   |
