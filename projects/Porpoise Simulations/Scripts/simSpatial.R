@@ -62,6 +62,7 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   # PPS = exp(intercept + density effect + noise) * rate change
   df$PPSorig <- exp(i + (b1*d.n)[df$MOORING] + rnorm(n*y, 0, sd=sdev))
   
+  X <- vector()
   # X corrects for habitat quality, so animals move towards core habitat
       for (i in 1:y){
         dsub <- subset(df, YEAR==i)
