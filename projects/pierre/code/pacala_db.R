@@ -31,7 +31,6 @@ insert_data_into_db = function(p_db, p_data_to_insert) {
 #if (!db_is_valid(p_db)) {stop("p_db is not valid")}
 if (!is.data.frame(p_data_to_insert)) {stop('p_data_to_insert is not a dataframe')}  
 #---------------------------------------------------
-browser()
   # name pointers
   col_range = db_state_get_range(p_db, 'data')
   row_range = 1:nrow(p_data_to_insert)
