@@ -3,14 +3,14 @@ title: "Pacala tests"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(testthat)
 ```
 
 ## loading data
 ```{r}
-test_file("C:\\dev\\pacala\\test.pacala_db.R")
+test_file("C:\\dev\\pacala\\code\\pacala_db.test.R")
 ```
-
-
+[//]: run this command from the console to get breakpoints to work
+[//]: rmarkdown::render("C:/dev/pacala/markdown/test.report.pacala.Rmd")
