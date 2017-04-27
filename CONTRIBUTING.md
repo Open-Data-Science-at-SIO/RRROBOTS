@@ -34,7 +34,7 @@ Please also take a look at our existing list of issues to see where we could use
 | Name                  | Affiliation                   |
 |-----------------------|-------------------------------|
 | Hao Ye                | SIO Postdoc                   |
-~~| Brian Stock           | SIO Grad Student (MB)         |~~
+| ~~Brian Stock~~           | SIO Grad Student (MB)         |
 | Eva Sánchez           | SIO Grad Student (MB)         |
 | Pierre Churukian      | SIO Grad Student (MS)         |
 | Bethany Kolody        | SIO Grad Student (MB)         |
