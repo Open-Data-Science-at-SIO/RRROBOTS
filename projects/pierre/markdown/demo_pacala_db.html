@@ -198,32 +198,8 @@ $(document).ready(function () {
 <div id="inserts-retrieves" class="section level3">
 <h3>Inserts &amp; Retrieves</h3>
 <p>Here the data loaded from the file is inserted. The internal db is shown</p>
-<pre class="r"><code>  db_obj = insert_data_into_db(db_obj, data_in_file)</code></pre>
-<pre><code>## Called from: insert_data_into_db(db_obj, data_in_file)
-## debug: col_range = db_state_get_range(p_db, &quot;data&quot;)
-## debug: row_range = 1:nrow(p_data_to_insert)
-## debug: if (ncol(p_data_to_insert) != (max(col_range) - min(col_range) + 
-##     1)) {
-##     stop(&quot;data to insert are too wide&quot;)
-## }
-## debug: p_db = db_matrix_init(p_db, nrow(p_data_to_insert))
-## debug: col_ptr = 0
-## debug: for (col_ptr in col_range) {
-##     p_db[[&quot;data&quot;]][[col_ptr]][row_range] = as.vector(p_data_to_insert[, 
-##         col_ptr])
-## }
-## debug: p_db[[&quot;data&quot;]][[col_ptr]][row_range] = as.vector(p_data_to_insert[, 
-##     col_ptr])
-## debug: p_db[[&quot;data&quot;]][[col_ptr]][row_range] = as.vector(p_data_to_insert[, 
-##     col_ptr])
-## debug: p_db[[&quot;data&quot;]][[col_ptr]][row_range] = as.vector(p_data_to_insert[, 
-##     col_ptr])
-## debug: p_db[[&quot;data&quot;]][[col_ptr]][row_range] = as.vector(p_data_to_insert[, 
-##     col_ptr])
-## debug: p_db[[&quot;data&quot;]][[col_ptr]][row_range] = as.vector(p_data_to_insert[, 
-##     col_ptr])
-## debug: return(set_db_current_width(p_db, max(col_range)))</code></pre>
-<pre class="r"><code>  db_obj[['data']]</code></pre>
+<pre class="r"><code>  db_obj = insert_data_into_db(db_obj, data_in_file)
+  db_obj[['data']]</code></pre>
 <pre><code>##   ID Species Diameter   x   y P1 P2 A S U V h Ei W D light
 ## 1  1    ACSA       20 200 600  0  0 0 0 0 0 0  0 0 0     0
 ## 2  2    BELU       15 700 400  0  0 0 0 0 0 0  0 0 0     0

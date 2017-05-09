@@ -5,11 +5,11 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("pacala_db.R")
+source("..\\code\\pacala_db.R")
 ```
 
 ```{r, echo=F}
-c_file_path = 'C:\\dev\\pacala'
+c_file_path = 'C:\\dev\\pacala\\data'
 c_data_file_name = 'pacala_data.txt'
 c_params_file_name = 'pacala_parameters.txt'
 ```
