@@ -1,0 +1,10 @@
+data_names	'ID', 'Species', 'Diameter', 'x', 'y'
+data_types	'numeric', 'character', 'numeric', 'numeric', 'numeric'
+prm_names	'P1','P2','A','S','U','V','h', 'Ei', 'W', 'D', 'F' 
+prm_types	'numeric','numeric','numeric','numeric','numeric','numeric','numeric', 'numeric', 'numeric', 'numeric', 'numeric'
+derived_names	'light', 'ring_width', 'tree_height', 'growth_dist', 'mortality_func', 'Y_L', 'Y_D'
+derived_types	'numeric', 'numeric', 'numeric', 'numeric', 'numeric', 'numeric', 'numeric'
+species_levels	'FAGR','TSCA','ACSA','BELU','ACRU','FRAM','PIST'
+state_names	'all_names', 'all_types', 'species_levels', 'db_width', 'db_length', 'current_width', 'data_range', 'params_range', 'derived_range'
+schema_names	'data_names', 'data_types', 'prm_names', 'prm_types', 'derived_names', 'derived_types', 'species_levels', 'state_names')
+  
