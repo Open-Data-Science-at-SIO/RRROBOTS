@@ -122,27 +122,26 @@ for (no in n.moorings){
     
   } # end nm in no. moorings
 
-#save(tab.res, file="./Data/simSpatialb1Results.RData")
-#save(tab.res, file="./Data/simSpatialb1StratResults.RData")
-#save(tab.res, file="./Data/simSpatialb0Results.RData")
-#save(tab.res, file="./Data/simSpatialb0StratResults.RData")
+
 
 
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73","#0072B2",  "#CC79A7")
-
+ggsave("./Figures/ChangeVPower.pdf",
 ggplot()+
-  geom_line(data=tab.res, aes(x=P.Change, y=P.Dect, 
-                              group=as.factor(No.M), color=as.factor(No.M)), size=1.5)+
-  scale_color_manual(name="No. Moorings", values=cbPalette)+
   geom_line(data=data.frame("P.Change"=c(-0.5, 0.5), "P.Dect"=c(0.8, 0.8)), 
-            aes(x=P.Change, y=P.Dect), linetype=4, size=2)+
-  geom_line(data=data.frame("P.Change"=c(-0.5, -0.5), "P.Dect"=c(0.14, 0.33)), 
-            aes(x=P.Change, y=P.Dect) ,size =3, color = "red")+
+            aes(x=P.Change, y=P.Dect), linetype=1, size=1)+
+  geom_line(data=tab.res, aes(x=P.Change, y=P.Dect, 
+                              group=as.factor(No.M), color=as.factor(No.M)), size=1)+
+  scale_color_manual(name="No. Moorings", values=cbPalette)+
+  
+ # geom_line(data=data.frame("P.Change"=c(-0.5, -0.5), "P.Dect"=c(0.14, 0.33)), 
+ #          aes(x=P.Change, y=P.Dect) ,size =3, color = "red")+
   xlab("Percent Change in Population")+
   ylab("Power")+
   scale_x_continuous(labels=scales::percent)+
   theme_bw()+
-  theme(legend.key=element_blank())
+  theme(legend.key=element_blank()),
+height=4, width=5, units="in")
 
 table <- dcast(tab.res, No.M ~ P.Change)
 
@@ -153,14 +152,9 @@ print(table)
 
 
 ```{r}
-
-load("./Data/predGrid.RData") # this has all XY coords, depths, densities, and SE vals
-
-head(gridOut)
-
-# use the MEAN field as the indicator of habitat quality
-
-gridOut$Norm <- gridOut$PpSqKm/sum(gridOut$PpSqKm)
+require(reshape2)
+load("./Data/simSpatialb0Resultsx10000.RData")
+table <- dcast(tab.res, No.M ~ P.Change, value.var = "P.Dect")
 
 
 ```
