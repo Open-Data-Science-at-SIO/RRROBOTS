@@ -70,9 +70,11 @@ p.vals <- predict(D.model, pred.grid)
 
 pred.grid <- cbind.data.frame(pred.grid, PredPPS=p.vals)
 
-ggplot(pred.grid, aes(x=DENSITY, y=PredPPS, group=YEAR, color=YEAR))+
-  geom_line()+
+ggplot(pred.grid, aes(x=DENSITY, y=PredPPS))+
+  geom_smooth()+
   theme_bw()
+
+
 
 ```
 
