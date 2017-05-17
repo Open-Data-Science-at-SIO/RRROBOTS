@@ -53,7 +53,7 @@ Friday:
 
 Tuesday:
 * Sharing / discussion of progress
-* Unit testing?
+* Unit testing (demo by Pierre Churukian)
 
 Friday:
 * Debug misc. issues
@@ -62,6 +62,7 @@ Friday:
 
 Tuesday:
 * Sharing / discussion of progress
+* R package writing demo
 
 Friday:
 * Debug misc. issues
@@ -71,8 +72,9 @@ Friday:
 Tuesday:
 * Sharing / discussion of progress
 * Guest Lecturer (Reid Otsuji, UCSD Libraries)
+  - Data Management
+  - TIER Protocol (https://github.com/ucsdlib/2017-sio-osfdemo)
   - Open Science Framework for Institutions (live demo)
-  - TIER Protocol
 
 Friday:
 * Debug misc. issues
