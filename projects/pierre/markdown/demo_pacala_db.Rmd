@@ -1,0 +1,96 @@
+---
+title: "DB_Object Demo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("..\\code\\pacala_db.R")
+```
+
+```{r, echo=F}
+c_file_path = 'C:\\dev\\pacala\\data'
+c_data_file_name = 'pacala_data.txt'
+c_params_file_name = 'pacala_parameters.txt'
+```
+
+### Motivation
+* The data format changes sometimes, and is spread over a number of files.
+* Be nice to have a schema driven data layer that abstracts the implementation and allows simplified interaction with the data.
+
+# Source Data
+Starting with data that look like this
+```{r}
+data_in_file = load_pacala_data(c_file_path, c_data_file_name)
+```
+```{r, echo=F}
+data_in_file
+```
+
+and paremters like this
+```{r}
+params_in_file = load_pacala_params(c_file_path, c_params_file_name)
+```
+```{r, echo=F}
+params_in_file
+```
+
+# Data Structure
+
+### Set up
+Here the schema is loaded
+```{r}
+  schema_list = load_schema()  
+```
+```{r, echo=F}
+  schema_list
+```
+and used to set up the data object. The internal schema is shown
+```{r}
+  db_obj = setup_db(schema_list)
+  db_obj[['state']]
+```
+
+### Inserts & Retrieves
+Here the data loaded from the file is inserted. The internal db is shown
+```{r}
+  db_obj = insert_data_into_db(db_obj, data_in_file)
+  db_obj[['data']]
+```
+
+Here a dataframe is retrieved with a single command, its trimmed to populted columns 
+```{r}
+curr_db = get_current_data(db_obj)
+```
+```{r, echo=F}
+curr_db
+```
+
+The parameters are inserted
+```{r}
+  db_obj = insert_db_params(db_obj, params_in_file)
+```
+```{r, echo=F}
+  db_obj[['data']]
+```
+
+and now the same single command returns a larger dataframe
+```{r}
+curr_db = get_current_data(db_obj)
+```
+```{r, echo=F}
+curr_db
+```
+
+Can also executed canned queries, here looking up a species by its ID
+```{r}
+lookup_name = get_species_of_individ(db_obj, 2)
+```
+```{r, echo=F}
+lookup_name
+```
+
+# Graphics
+```{r}
+draw_landscape(curr_db, 1000, 1000)
+```
