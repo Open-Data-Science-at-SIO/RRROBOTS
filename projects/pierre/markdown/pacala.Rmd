@@ -1,0 +1,98 @@
+---
+title: " Pacala Forest Simulator"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source('C:\\dev\\pacala\\code\\pacala.R')
+source('C:\\dev\\pacala\\code\\pacala_db.R')
+```
+
+Pacala, Canham, Silander (1993) Can J For Res 23: 1980-88
+
+###Objective
+* spatailly explicit model of forest dynamic
+* based on submodel predicting growth, dispersal, survival, recruitment
+* based on submodel predicting local availability of resources
+* competition is purely mechanistic, only interact by resource depletion
+
+```{r}
+c.x.max = 100
+c.y.max = 100
+c_file_path = 'C:\\dev\\pacala\\data'
+c_data_file_name = 'pacala_data.txt'
+c_params_file_name = 'pacala_parameters.txt'
+
+```
+
+###Model design
+Using a $c.x.max$ x $c.y.max$ grid 
+With circular, non-overlapping trees
+
+## Exploring the data
+Load the data and look at it
+```{r load model data, echo=F}
+data_to_insert = load_pacala_data(c_file_path, c_data_file_name)
+params_to_insert = load_pacala_params(c_file_path, c_params_file_name)
+db_obj = setup_db_obj(load_schema())
+```
+```{r, echo=F}
+print (data_to_insert)
+print (params_to_insert)
+print(db_obj[['state']][['species_levels']])
+```
+
+
+## The data is loaded into the data structure
+```{r}
+db_obj = insert_individuals(db_obj, data_to_insert)
+db_obj = insert_species_params(db_obj, params_to_insert)
+```
+```{r, echo=F}
+print(get_current_data(db_obj))
+```
+
+### Plot the data
+```{r}
+draw_landscape(db_obj, 10, 10)
+```
+
+### Generate resource availibity for each individual
+using a light model of a single point source at origin with any point's intesity proportional to it distance from the source
+```{r}
+db_obj = run_resources_submodel(db_obj)
+```
+```{r, echo=F}
+get_derived_values(db_obj, c('light'))
+```
+
+### Generate growth for each individual
+```{r}
+db_obj = run_growth_submodel(db_obj)
+```
+```{r, echo=F}
+get_derived_values(db_obj, c('ring_width', 'tree_height'))
+
+```
+
+### Generate mortality probability for each individual
+```{r}
+db_obj = run_mortality_submodel(db_obj)
+```
+```{r, echo=F}
+get_derived_values(db_obj, c('growth_dist', 'mortality_func', 'Y_L', 'Y_D'))
+```
+
+### Generate recruitment surface for each individual
+```{r, eval=F}
+db_obj = run_recruitment_submodel(db_obj, 100, 100)
+```
+```{r, echo=F, eval=F}
+for (i in 1:length(db_obj[['surfaces']])) {
+  heatmap(db_obj[['surfaces']][[i]], Rowv = NA, Colv = "Rowv")
+}  
+```
+
+
+
