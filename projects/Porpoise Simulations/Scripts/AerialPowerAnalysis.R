@@ -23,15 +23,18 @@ aer.power$Power <- df$power
 
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73","#0072B2",  "#CC79A7")
 
+ggsave("./Figures/aerPower.pdf",
 ggplot()+
-  geom_line(data=aer.power, aes(x=pR, y=Power, group=as.factor(Reps), color=as.factor(Reps)), size=1)+
-  scale_color_manual(name="No. Replicates", values=cbPalette)+
   geom_line(data=data.frame("pR"=c(-50, 50), "Power"=c(0.8, 0.8)), 
             aes(x=pR, y=Power), linetype=1, size=1)+
+  geom_line(data=aer.power, aes(x=pR, y=Power, group=as.factor(Reps), color=as.factor(Reps)), size=1)+
+  scale_color_manual(name="No. Replicates", values=cbPalette)+
+  
   xlab("Percent Change in Population")+
   ylab("Power")+
   theme_bw()+
   xlim(-50, 50)+
-  theme(legend.key=element_blank())
+  theme(legend.key=element_blank()),
+height=4, width=5, units="in")
   
 
