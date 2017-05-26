@@ -1,0 +1,18 @@
+ANALYSIS CODE FOR MICROBIAL DIVERSITY AND COMMUNITY STRUCTURE
+
+This project contains bash scripts and R code to analyze microbial communities from different databases. 
+The 16sRNA genes will be processed using paprica which used a phylogenetic approach rather than an OTU 
+based approach, as described in: Bowman JS, Ducklow HW (2015) Microbial Communities Can Be Described by Metabolic Structure: A General Framework and Application to a Seasonally Variable, Depth-Stratified Microbial Community from the Coastal West Antarctic Peninsula. 
+PLoS ONE 10(8): e0135868. https://doi.org/10.1371/journal.pone.0135868
+I will examine how diversity index and other community metrics will change whem using a OTU based approach vs a phylogenetic approach.
+
+Data availability
+The study was conducted based on re-proceesed publicly available data from the Human Microbiome Project and TARA Oceans 
+(and probably data from Earth microbiome project). 
+
+HMP: 16S amplicon data, v35, all body sites (raw data available through hmpdacc.org)
+TARA Oceans: 16S rRNA, targeting prokaryotes; taxa count table and raw sample metadata available online through PANGAEA.
+
+
+Analysis code
+The code will be organised to reproduce beta diversity figures in pubhlised papers.
