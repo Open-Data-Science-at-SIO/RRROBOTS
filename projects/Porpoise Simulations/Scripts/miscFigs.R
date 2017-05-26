@@ -15,7 +15,8 @@ ggplot(means, aes(x=DENSITY, y=Mean))+
 ggsave("./Figures/PPSReduction.pdf", 
 ggplot()+
   geom_point(data=subset(df, MOORING==1), aes(x=as.factor(YEAR), y=PPSorig))+
-  geom_point(data=subset(df, MOORING==1), aes(x=as.factor(YEAR), y=PPS), color="red", fill="red", shape=25)+
+  geom_point(data=subset(df, MOORING==1), aes(x=as.factor(YEAR), y=PPS), 
+             color="red", fill="red", shape=25)+
   ylim(c(0, 600))+
   xlab("YEAR")+
   ylab("Simulated PPS")+
