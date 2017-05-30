@@ -4,7 +4,6 @@
 
 simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   
-
   # n is the number of moorings
   # y is the number of years
   # r is the growth rate over the entire period (e.g., for a 50% decline r = -0.5)
@@ -12,17 +11,19 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   # d.min and d.max are the depth boundaries for mooring deployment
   # default d.min and d.max include the entire range of the spatial density obj.
   # note depth is negative, so default d.min=0 and d.max=-1000
+  # 20170530 currently, effort allocation is 100% within depth boundaries
+  # TODO: include par for % effort allocation to inshore v. offshore?
   
   # b is whether decline is applied uniformly over the study area (b=0; default)
   # or whether the decline results in contraction to core habitat (b=1)
   
   require(nlme)
   load("./Data/predGrid.RData") #gridOut created by spDensity
-  load("./Data/Dmodel.RData")
+  load("./Data/Dmodel.RData") #
   
   # the impact coefficient for the magnitude of the impact is scaled from 0 to 1
   # according to habitat quality.  So high density areas have a lower I val.
-  gridOut$I <- (gridOut$PpSqKm*(1/(2*max(gridOut$PpSqKm)))) + 0.5
+  gridOut$I <- (gridOut$PpSqKm*(1/(max(gridOut$PpSqKm)))) 
 
   # Choose random X, Y locations for n moorings and get D vals
   gO <- gridOut[which(gridOut$D>d.max & gridOut$D <= d.min),]
