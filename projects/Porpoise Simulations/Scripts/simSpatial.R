@@ -2,7 +2,7 @@
 # for n moorings over y years given some rate of change
 # if d.min and d.max are not supplied, default 
 
-simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
+simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0, scale=0){
   
   # n is the number of moorings
   # y is the number of years
@@ -17,6 +17,9 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   # b is whether decline is applied uniformly over the study area (b=0; default)
   # or whether the decline results in contraction to core habitat (b=1)
   
+  # scale is whether sampling design is proportional to underlying density (scale = 1)
+  # default scale = 0, not proportional
+  
   require(nlme)
   load("./Data/predGrid.RData") #gridOut created by spDensity
   load("./Data/Dmodel.RData") #
@@ -25,9 +28,29 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-1000, b=0){
   # according to habitat quality.  So high density areas have a lower I val.
   gridOut$I <- (gridOut$PpSqKm*(1/(max(gridOut$PpSqKm)))) 
 
-  # Choose random X, Y locations for n moorings and get D vals
+  # Restrict possible instrument locations to be within specified depth range
   gO <- gridOut[which(gridOut$D>d.max & gridOut$D <= d.min),]
-  gLocs <- gO[sample(1:nrow(gO), n, replace=FALSE),]
+  # Add a column for scaled density
+  gO$scaled.D <- gO$PpSqKm/max(gO$PpSqKm)
+  
+  # Choose random X, Y locations for n moorings and get D vals
+  # if scale = 1, then instruments are placed proportionally to local density
+  
+  if(scale == 0) {gLocs <- gO[sample(1:nrow(gO), n, replace=FALSE),]} else {
+    if(scale == 1){
+      
+      locs <- vector()
+      i <- 0
+      while(i<n){
+        test.id <- sample(1:nrow(gO), 1)
+        if(test.id %in% locs) {next} else # don't want to put 2 moorings at 1 loc
+          if(rbinom(1, 1, gO$scaled.D[test.id]) == 1){locs <- c(locs, test.id); i <- i+1} else {next}
+      }
+      
+      gLocs <- gO[locs,]
+      
+    }
+  }
   
   # Generate single random intercept term 
   int <- D.model$coefficients[1]
