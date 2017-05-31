@@ -1,5 +1,5 @@
 # NOTE 05302017: prev. there was a bug; b and depth were not being passed to simSpatial in line 19 
-runSim <- function(n.moorings, p.change, nrep, b, d.min, d.max, file.out){
+runSim <- function(n.moorings, p.change, nrep, b, d.min, d.max, scale, file.out){
 
   source("./Scripts/simSpatial.R")
   #n.moorings <- c(10, 25, 50, 75, 100)
@@ -16,7 +16,7 @@ runSim <- function(n.moorings, p.change, nrep, b, d.min, d.max, file.out){
     
       for (i in 1:nrep){
       
-      nd <- as.matrix(simSpatial(no, 10, pc, d.min=d.min, d.max=d.max, b=b))
+      nd <- as.matrix(simSpatial(no, 10, pc, d.min=d.min, d.max=d.max, b=b, scale=scale))
       
       nd <- as.data.frame(nd, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
       
@@ -50,14 +50,14 @@ nrep <- 10000
 #runSim(n.moorings, p.change, nrep, b, d.min, d.max, file.out)
 #runSim(n.moorings, p.change.fig, 1000, 0, file.out="./Data/simSpatialb0Results.RData")
 
-runSim(n.moorings, p.change, nrep, 0, d.min=0, d.max=-1000, file.out="./Data/simSpatialb0Resultsx10000_SingleCell.RData")
-require(lubridate)
-start <- now()
-runSim(n.moorings, p.change, nrep, 1, d.min=0, d.max=-1000, file.out="./Data/simSpatialb1Resultsx10000_SingleCell.RData")
-now() - start
+runSim(n.moorings, p.change, nrep, 0, d.min=0, d.max=-1000, scale=1, file.out="./Data/simSpatialScaledb0Resultsx10000_SingleCell.RData")
+runSim(n.moorings, p.change, nrep, 1, d.min=0, d.max=-1000, scale=1, file.out="./Data/simSpatialScaledb1Resultsx10000_SingleCell.RData")
+
 
 runSim(n.moorings, p.change, nrep, 0, d.min=0, d.max=-100, file.out="./Data/simSpatialStratb0Resultsx10000_SingleCell.RData")
 runSim(n.moorings, p.change, nrep, 1, d.min=0, d.max=-100, file.out="./Data/simSpatialStratb1Resultsx10000_SingleCell.RData")
+
+
 
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73","#0072B2",  "#CC79A7")
 
