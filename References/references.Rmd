@@ -1,0 +1,43 @@
+---
+title: "Workshop reference list"
+author: "julien colomb"
+date: "5/10/2017"
+output:
+  html_document: default
+
+---
+```{r, echo= FALSE}
+library (knitcitations)
+cite_options( cite.style = "authortitle" , max.names =20)
+```
+
+The data in here is related to a different workshop, I let it in, since it may also be relevant to this one (but in different section names).
+I hope it helps.
+Julien
+
+#Introduction about raw data
+
+```{r, echo=F, results='hide'}
+cleanbib() #this clean the library, such that a bibliography is made for each section
+citep ("10.1038/embor.2012.36") #this call the citation, not that it is not printed since the chunk has "results='hide'""
+
+```
+
+```{r,echo=F, warning=FALSE, results='asis'}
+bibliography() #this list the bibliography for this section
+```
+
+#Art of the spreadsheets
+
+```{r, echo=F, results='hide'}
+cleanbib() #this clean the library, such that a bibliography is made for each section
+citep ("10.1371/journal.pcbi.1005097") #this call the citation, not that it is not printed since the chunk has "results='hide'""
+
+```
+
+```{r,echo=F, warning=FALSE, results='asis'}
+bibliography() #this list the bibliography for this section
+```
+
+
+
