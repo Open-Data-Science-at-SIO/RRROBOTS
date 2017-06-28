@@ -16,9 +16,11 @@ runSim <- function(n.moorings, p.change, nrep, b, d.min, d.max, scale, file.out)
     
       for (i in 1:nrep){
       
-      nd <- as.matrix(simSpatial(no, 10, pc, d.min=d.min, d.max=d.max, b=b, scale=scale))
+      nd <- as.matrix(simSpatial(no, 10, pc, d.min=d.min, d.max=d.max, design=design, b=b))
       
       nd <- as.data.frame(nd, names=c("MOORING", "YEAR", "DENSITY", "PPS"))
+      
+      nd$PPS <- nd$PPS+1 # so that zeros can be log-transformed
       
       nm <- lme(fixed = log(PPS) ~ YEAR, 
                 random = ~ 1 | MOORING, data = nd)
@@ -47,15 +49,7 @@ p.change <- -0.25
 p.change.fig <- seq(-0.5, 0.5, by = 0.05)
 p.change.table <- c(-0.5, -0.25, -0.1, 0.25)
 nrep <- 10000
-#runSim(n.moorings, p.change, nrep, b, d.min, d.max, file.out)
-#runSim(n.moorings, p.change.fig, 1000, 0, file.out="./Data/simSpatialb0Results.RData")
 
-runSim(n.moorings, p.change, nrep, 0, d.min=0, d.max=-1000, scale=1, file.out="./Data/simSpatialScaledb0Resultsx10000_SingleCell.RData")
-runSim(n.moorings, p.change, nrep, 1, d.min=0, d.max=-1000, scale=1, file.out="./Data/simSpatialScaledb1Resultsx10000_SingleCell.RData")
-
-
-runSim(n.moorings, p.change, nrep, 0, d.min=0, d.max=-100, file.out="./Data/simSpatialStratb0Resultsx10000_SingleCell.RData")
-runSim(n.moorings, p.change, nrep, 1, d.min=0, d.max=-100, file.out="./Data/simSpatialStratb1Resultsx10000_SingleCell.RData")
 
 
 
