@@ -2,12 +2,22 @@ require(ggplot2)
 
 # Figure to show relationship between density and PPS
 # Requires PPS transformed to df called means, as in PAMPwrProject.Rmd
+mod <- glm(log(Total) ~ log(DENSITY), data = total)
+pred.grid <- data.frame("DENSITY"=seq(0.0004, 3.06, by=0.0001))
+p.vals <- predict(mod, pred.grid, se.fit=TRUE)
+pred.grid$PPS <- p.vals$fit
+pred.grid$LCI <- pred.grid$PPS - (1.96*as.numeric(p.vals$se.fit))
+pred.grid$UCI <- pred.grid$PPS + (1.96*as.numeric(p.vals$se.fit))
+
 ggsave("./Figures/DensityVsPPS.pdf",
-ggplot(means, aes(x=DENSITY, y=Mean))+
-  geom_smooth(method="glm", formula = log(y) ~ log(x))+
-  geom_point(aes(x=DENSITY, y=log(Mean)))+
-  xlab("Mean Porpoise Density Estimated by Spline")+
-  ylab("Log Mean PPS Observed by C-PODs")+
+ggplot()+
+  geom_point(data=total, aes(x=DENSITY, y=log(Total)))+
+  geom_line(data=pred.grid, aes(x=DENSITY, y=PPS))+
+  geom_ribbon(data=pred.grid, aes(x=DENSITY, ymin = LCI, ymax=UCI), alpha=0.1)+
+ # xlim(c(0,3.1))+
+#  ylim(c(4, 12.5))+
+  xlab("Mean Predicted Porpoise Density")+
+  ylab("Log Total PPS Observed")+
   theme_bw(),
  height=4, width=4, units="in")
 
