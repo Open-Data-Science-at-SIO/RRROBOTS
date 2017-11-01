@@ -81,4 +81,12 @@ p <- ggplot()+
 print(p)
 }, movie.name="./Figures/PPS.gif")
 
+depth <- c(93,93, 93, 247, 247, 247, 98, 98, 63, 63, 
+           68, 68, 68, 155, 155,155, 105, 105, 80, 80, 80, 
+           223, 223, 223, 200, 200, 200, 95, 95, 95)/3.28
+total$D <- depth*-1
 
+par(mfrow=c(2,1))
+plot(total$D, total$Total, xlab="Water Depth (m)", ylab="Total PPS", pch=19, xlim=c(-150,0))
+hist(si.data$Depth, xlim=c(-150,0), col="gray", main=NA,
+     xlab="Water Depth (m)", ylab="No. Sightings", breaks=seq(0,-1000, by=-10))
