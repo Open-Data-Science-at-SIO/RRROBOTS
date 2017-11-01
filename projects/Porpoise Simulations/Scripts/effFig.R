@@ -2,6 +2,8 @@
 require(tidyr)
 require(dplyr)
 require(reshape2)
+require(lubridate)
+require(ggplot2)
 
 load("./Data/effort.RData")
 load("./Data/CpodPPS.RData")
@@ -29,12 +31,13 @@ if(t$variable[i] == "Aerial"){t$Month[i] <- t$Month[i]-0.1} else
 }
 
 ggsave("./Figures/EffTable.pdf",
-ggplot(t, aes(x=Month, y=Year, shape=variable))+
-  geom_point()+
+ggplot(t, aes(x=Month, y=Year, shape=variable, color=variable))+
+  geom_point(size=2)+
   scale_y_reverse(breaks=2015:2000)+
   ylab("")+
   scale_x_continuous(breaks = 1:12)+
   scale_shape_manual(name="Survey Type", values=c(19, 17))+
+  scale_color_manual(name="Survey Type", values=c("coral2", "deepskyblue4"))+
   theme_bw()+
   theme(legend.position=c(0.15, 0.15),
         legend.key=element_blank(),

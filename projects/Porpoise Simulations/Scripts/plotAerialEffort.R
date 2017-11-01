@@ -21,6 +21,9 @@ ggplot(yearlyeff, aes(x=Year, y=Eff))+
         axis.text.x=element_text(angle=-45, hjust=-0.1)),
 height=4, width=6, units="in")
 
+
+eff.data <- eff.data[which(eff.data$Depth>-200),]
+
 C.Lat <- mean(range(flatfile$M.Lat))
 C.Lon <- mean(range(flatfile$M.Lon))
 

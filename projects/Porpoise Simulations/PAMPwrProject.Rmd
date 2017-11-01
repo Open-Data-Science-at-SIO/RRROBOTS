@@ -53,30 +53,52 @@ names(CXY)[1] <- "MOORING"
 total <-  PPS.Data[,.(Total = sum(PPS)), 
                            by = .(YEAR, MOORING)]
 
+ vartab <-  total[,.(CV = sd(Total)/mean(Total)), 
+                            by = .(MOORING)]
+ m <- merge(vartab, CXY[,c(1,4)], by="MOORING")
+ plot(m$DENSITY, m$CV)
+
+
+ 
+ mod <- lm(CV ~ DENSITY, data=m)
 # Attach the acoustic data to the aerial survey density estimates
 total <- merge(CXY[,c(1,4)], total, by="MOORING")
 
 all.pps <- merge(CXY[,c(1,4)], PPS.Data, by="MOORING")
  
 # Create a spatial model of PPS as a function of year and underlying mean density
-D.model <- glm(log(Total) ~ as.numeric(factor(YEAR)) + log(DENSITY), data = total)
+D.model <- glm(log(Total) ~ factor(YEAR, ordered=TRUE) + log(DENSITY), 
+                data = total)
 
-save(D.model, file="./Data/Dmodel.RData")
 
-summary(D.model)
+Dm <- glm(log(Total) ~ 0 + factor(YEAR, ordered=TRUE) + log(DENSITY), 
+          family=quasi(link="identity", variance="mu"), data=total)
+
+summary(Dm)
+plot(Dm)
+
+# glm(Total ~ factor(YEAR) + DENSITY, family=poisson(link="log"), data=total) AIC = 465658
+
+#
+
+# save(D.model, file="./Data/Dmodel.RData")
+
+
 
 # Use model to predict expected PPS values as a function of density over the three years
 
-pred.grid <- expand.grid("DENSITY"=seq(0.0005, 3, by=0.001), "YEAR"=as.factor(1:3))
+pred.grid <- expand.grid("DENSITY"=seq(0.001, 3, by=0.001), "YEAR"=as.factor(2013:2015))
 
-p.vals <- predict(D.model, pred.grid, se.fit=TRUE)
+p.vals <- predict(Dm, pred.grid, se.fit=TRUE)
 
 pred.grid <- cbind.data.frame(pred.grid, PredPPS=p.vals)
 
-ggplot(pred.grid, aes(x=DENSITY, y=PredPPS.fit, group=YEAR))+
-  geom_point(data=total, aes(x=DENSITY, y=log(Total)))+
-  ylab("Log Total (91 day) PPS")+
-  geom_line()+
+ggplot()+
+  geom_line(data=pred.grid, 
+            aes(x=DENSITY, y=exp(PredPPS.fit), color=YEAR))+
+  geom_point(data=total, 
+             aes(x=DENSITY, y=Total, color=as.factor(YEAR)))+
+  ylab("Total (91 day) PPS")+
   theme_bw()
 
 

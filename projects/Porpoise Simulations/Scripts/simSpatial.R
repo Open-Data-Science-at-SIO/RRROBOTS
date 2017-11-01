@@ -76,7 +76,7 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-150, design=0, b=0){
   i <- rnorm(1, int, i.se)
   
   # Generate underlying densities for n spatial locs
-  # from a lognormal distribution
+  # from a normal distribution
   # using the mean and SE of the density surface
   d.n <- abs(rnorm(n, gLocs$PpSqKm, gLocs$SE.PpSqKm))
 
@@ -98,12 +98,13 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-150, design=0, b=0){
                     "YEAR" = 1:y, 
                     "DENSITY" = NA, 
                     "PPS"= NA)
+  
   df$DENSITY <- rep(d.n, y) # underlying mean density in real space
   df$X <- rep(gLocs$X, y)
   df$Y <- rep(gLocs$Y, y)
   df$D <- rep(gLocs$D, y)
   
-  # PPS = exp(intercept + density effect + noise) * rate change
+  # PPS = exp(intercept + density effect + noise) 
   df$PPSorig <- exp(i + (b1*log(d.n))[df$MOORING] + rnorm(n*y, 0, sd=sdev))
   
   X <- vector()
@@ -112,6 +113,7 @@ simSpatial <- function(n, y, r, d.min=0, d.max=-150, design=0, b=0){
         dsub <- subset(df, YEAR==i)
       X[i] <- sum(dsub$PPSorig)/sum(dsub$PPSorig*gLocs$I)
       }
+  
   if(b==0){df$PPS <- round(df$PPSorig * cum.r[df$YEAR])} else
     if(b==1){df$PPS <- round(df$PPSorig * gLocs$I[df$MOORING] * cum.r[df$YEAR] * X[df$YEAR])}
     
